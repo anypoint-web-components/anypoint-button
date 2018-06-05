@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>anypoint-button demo</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <script type="module">
+      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
+      import '@polymer/iron-demo-helpers/demo-snippet';
+    </script>
+
+    <script type="module" src="../anypoint-button.js"></script>
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Buttons can be flat, toggable, or disabled</h3>
+      <demo-snippet>
+        <template>
+          <anypoint-button>click</anypoint-button>
+          <anypoint-button toggles>click</anypoint-button>
+          <anypoint-button disabled>click</anypoint-button>
+        </template>
+      </demo-snippet>
+
+      <h3>Buttons can be styled</h3>
+      <demo-snippet>
+        <template>
+          <anypoint-button class="styled">click</anypoint-button>
+          <anypoint-button class="styled" toggles>click</anypoint-button>
+          <anypoint-button class="styled" disabled>click</anypoint-button>
+          <custom-style>
+            <style>
+            .styled {
+              --anypoint-button: {
+                background-color: #00A2DF;
+                color: #fff;
+              };
+              --anypoint-button-active: {
+                background-color: #506773;
+              };
+              --anypoint-button-focused: {
+                background-color: #087299;
+              };
+            }
+            </style>
+          </custom-style>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>
