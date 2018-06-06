@@ -7,6 +7,7 @@
   ],
   "private": true,
   "dependencies": {
+    "@anypoint-components/anypoint-styles": "github:anypoint-components/anypoint-styles#3.0.0-preview",
     "@polymer/polymer": "^3.0.0",
     "@polymer/iron-behaviors": "^3.0.0-pre.19"
   },

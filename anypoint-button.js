@@ -1,8 +1,10 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import {IronButtonState, IronButtonStateImpl} from '@polymer/iron-behaviors/iron-button-state.js';
+import {IronButtonState} from '@polymer/iron-behaviors/iron-button-state.js';
 import {IronControlState} from '@polymer/iron-behaviors/iron-control-state.js';
 import * as Polymer from '@polymer/polymer/lib/legacy/class.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@anypoint-components/anypoint-styles/typography.js';
+import '@anypoint-components/anypoint-styles/colors.js';
 /**
  * `anypoint-button`
  * Anypoint styled button.
@@ -26,8 +28,6 @@ class AnypointButton extends Polymer.mixinBehaviors([IronButtonState, IronContro
         background: transparent;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         -webkit-tap-highlight-color: transparent;
-        font: inherit;
-        text-transform: uppercase;
         outline-width: 0;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -54,6 +54,7 @@ class AnypointButton extends Polymer.mixinBehaviors([IronButtonState, IronContro
       }
 
       :host([active]) {
+        font-weight: bold;
         @apply --anypoint-button-active;
       }
 
@@ -69,9 +70,80 @@ class AnypointButton extends Polymer.mixinBehaviors([IronButtonState, IronContro
         pointer-events: none;
         @apply --anypoint-button-disabled;
       }
+
+      :host([type="primary"]),
+      :host([type="primary"][focused]) {
+        background-color: var(--anypoint-color-primary);
+        color: #fff;
+      }
+
+      :host([type="secondary"]),
+      :host([type="secondary"][focused]) {
+        background-color: var(--anypoint-color-secondary);
+        color: #fff;
+      }
+
+      :host([type="tertiary"]),
+      :host([type="tertiary"][focused]) {
+        background-color: var(--anypoint-color-aluminum5);
+        color: #fff;
+      }
+
+      :host([type="danger"]),
+      :host([type="danger"][focused]) {
+        background-color: var(--anypoint-color-danger);
+        color: #fff;
+      }
+
+      :host([active][type="primary"]) {
+        background-color: var(--anypoint-color-coreBlue4);
+      }
+
+      :host([active][type="secondary"]) {
+        background-color: var(--anypoint-color-coreBlue5);
+      }
+
+      :host([active][type="tertiary"]) {
+        background-color: var(--anypoint-color-steel2);
+      }
+
+      :host([active][type="danger"]) {
+        background-color: var(--anypoint-color-yellow3);
+      }
       </style>
       <slot></slot>
     `;
+  }
+
+  static get properties() {
+    return {
+      /**
+       * A type of the button. Can be one of:
+       * - `primary`
+       * - `secondary`
+       * - `tertiary`
+       * - `danger`
+       *
+       * You can set own type but the style has to be applied within the
+       * light DOM or you have to create own CSS variabnle and place it with
+       * every occurence of the button.
+       *
+       * ```html
+       * <style>
+       * anypoint-button[type="my-type"] {
+       *  background-color: var(--anypopint-button-my-type, red);
+       * }
+       * </style>
+       * <anypoint-button type="myu-type">Click me</anypoint-button>
+       * ```
+       *
+       * @type {String}
+       */
+      type: {
+        type: String,
+        reflectToAttribute: true
+      }
+    };
   }
 
   static get observers() {
