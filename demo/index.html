@@ -3,36 +3,36 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-
     <title>anypoint-button demo</title>
-
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-
-    <script type="module">
-      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
-      import '@polymer/iron-demo-helpers/demo-snippet';
-    </script>
-
+    <script type="module" src="../node_modules/@advanced-rest-client/arc-demo-helper/arc-demo-helper.js"></script>
+    <script type="module" src="../node_modules/@anypoint-web-components/anypoint-styles/colors.js"></script>
     <script type="module" src="../anypoint-button.js"></script>
-
-    <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
-      </style>
-    </custom-style>
+    <style>
+    ol {
+      list-style: decimal outside;
+      line-height: 1.8;
+      margin-bottom: 10px;
+      padding-left: 16px;
+      margin: 0;
+      color: #5f6368;
+    }
+    </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
-      <h3>Buttons can be flat, toggable, or disabled</h3>
-      <demo-snippet>
+      <h2>Anypoint theme</h2>
+
+      <h2>Buttons can be flat, toggable, or disabled</h2>
+      <arc-demo-helper>
         <template>
           <anypoint-button>Click</anypoint-button>
           <anypoint-button toggles>Click</anypoint-button>
           <anypoint-button disabled>Click</anypoint-button>
         </template>
-      </demo-snippet>
+      </arc-demo-helper>
 
-      <h3>Buttons can be styled</h3>
-      <demo-snippet>
+      <h2>Buttons can be styled</h2>
+      <arc-demo-helper>
         <template>
           <anypoint-button class="styled">Click</anypoint-button>
           <anypoint-button class="styled" toggles>Click</anypoint-button>
@@ -40,41 +40,140 @@
           <custom-style>
             <style>
             .styled {
-              --anypoint-button: {
-                background-color: #00A2DF;
-                color: #fff;
-              };
-              --anypoint-button-active: {
-                background-color: #506773;
-              };
-              --anypoint-button-focused: {
-                background-color: #087299;
-              };
+              --anypoint-button-background-color: #00A2DF;
+              --anypoint-button-color: #fff;
+              --anypoint-button-active-background-color: #4CAF50;
+              --anypoint-button-active-color: #fff;
+              --anypoint-button-focused-background-color: #087299;
+              --anypoint-button-focused-color: #fff;
             }
             </style>
           </custom-style>
         </template>
-      </demo-snippet>
+      </arc-demo-helper>
 
-      <h3>Default theme buttons</h3>
-      <demo-snippet>
+      <h2>Default theme buttons - types</h2>
+      <p>Try to shift to use "emphasis" instead of type.</p>
+      <arc-demo-helper>
         <template>
           <anypoint-button type="primary">Click</anypoint-button>
           <anypoint-button type="secondary">Click</anypoint-button>
           <anypoint-button type="tertiary">Click</anypoint-button>
           <anypoint-button type="danger">Click</anypoint-button>
         </template>
-      </demo-snippet>
+      </arc-demo-helper>
 
-      <h3>Default theme buttons that toggles</h3>
-      <demo-snippet>
+      <h2>Default theme buttons - types (toggles)</h2>
+      <p>Try to shift to use "emphasis" instead of type.</p>
+      <arc-demo-helper>
         <template>
           <anypoint-button type="primary" toggles>Click</anypoint-button>
           <anypoint-button type="secondary" toggles>Click</anypoint-button>
           <anypoint-button type="tertiary" toggles>Click</anypoint-button>
           <anypoint-button type="danger" toggles>Click</anypoint-button>
         </template>
-      </demo-snippet>
+      </arc-demo-helper>
+
+      <h2>Button emphasis</h2>
+      <ol class="lst-kix_sbqh7cx4vrbc-0 start" start="1">
+        <li>
+          <strong>Text button</strong>
+          (low emphasis)<br>
+          Text buttons are typically used for less important actions.<br>
+        </li>
+        <li>
+          <strong>Outlined Button</strong> (medium emphasis)<br>
+          Outlined buttons are used for more emphasis than text buttons due to the stroke.<br>
+        </li>
+        <li>
+          <strong>Contained button</strong> (high emphasis)<br>
+          Contained buttons have more emphasis, as they use use a color fill and shadow.<br>
+        </li>
+      </ol>
+      <h3>Low emphasis</h3>
+      <arc-demo-helper>
+        <template>
+          <anypoint-button emphasis="low">Click</anypoint-button>
+          <anypoint-button emphasis="low" toggles>Click</anypoint-button>
+          <anypoint-button emphasis="low" disabled>Click</anypoint-button>
+        </template>
+      </arc-demo-helper>
+
+      <h3>Medium emphasis</h3>
+      <arc-demo-helper>
+        <template>
+          <anypoint-button emphasis="medium">Click</anypoint-button>
+          <anypoint-button emphasis="medium" toggles>Click</anypoint-button>
+          <anypoint-button emphasis="medium" disabled>Click</anypoint-button>
+        </template>
+      </arc-demo-helper>
+
+      <h3>High emphasis</h3>
+      <arc-demo-helper>
+        <template>
+          <anypoint-button emphasis="high">Click</anypoint-button>
+          <anypoint-button emphasis="high" toggles>Click</anypoint-button>
+          <anypoint-button emphasis="high" disabled>Click</anypoint-button>
+        </template>
+      </arc-demo-helper>
+
+      <h2>MD theme</h2>
+
+      <h3>low emphasis</h3>
+      <arc-demo-helper>
+        <template>
+          <anypoint-button theme="md">Click</anypoint-button>
+          <anypoint-button theme="md" toggles>Click</anypoint-button>
+          <anypoint-button theme="md" disabled>Click</anypoint-button>
+        </template>
+      </arc-demo-helper>
+
+      <h3>medium emphasis</h3>
+      <arc-demo-helper>
+        <template>
+          <anypoint-button theme="md" class="medium-emphasis">Click</anypoint-button>
+          <anypoint-button theme="md" class="medium-emphasis" toggles>Click</anypoint-button>
+          <anypoint-button theme="md" class="medium-emphasis" disabled>Click</anypoint-button>
+          <style>
+          .medium-emphasis {
+            --anypoint-button-color: #00A2DF;
+            --anypoint-button-border-color: #00A2DF;
+          }
+          </style>
+        </template>
+      </arc-demo-helper>
+
+      <h3>high emphasis</h3>
+      <arc-demo-helper>
+        <template>
+          <anypoint-button theme="md" class="high-emphasis">Click</anypoint-button>
+          <anypoint-button theme="md" class="high-emphasis" toggles>Click</anypoint-button>
+          <anypoint-button theme="md" class="high-emphasis" disabled>Click</anypoint-button>
+          <style>
+          .high-emphasis {
+            --anypoint-button-background-color: #00A2DF;
+            --anypoint-button-color: #fff;
+            --anypoint-button-border-color: #00A2DF;
+          }
+          </style>
+        </template>
+      </arc-demo-helper>
+
+      <h3>Border radius</h3>
+      <arc-demo-helper>
+        <template>
+          <anypoint-button theme="md" class="radius">Click</anypoint-button>
+          <anypoint-button theme="md" class="radius" toggles>Click</anypoint-button>
+          <anypoint-button theme="md" class="radius" disabled>Click</anypoint-button>
+          <style>
+          .radius {
+            --anypoint-button-border-radius: 1px;
+            --anypoint-button-color: #00A2DF;
+            --anypoint-button-border-color: #00A2DF;
+          }
+          </style>
+        </template>
+      </arc-demo-helper>
     </div>
   </body>
 </html>
