@@ -11,7 +11,7 @@ import '@polymer/paper-ripple/paper-ripple.js';
  * @customElement
  * @polymer
  * @demo demo/index.html
- * @memberof AnypointComponents
+ * @memberof AnypointUi
  */
 class AnypointButton extends ControlStateMixin(ButtonStateMixin(LitElement)) {
   static get styles() {
