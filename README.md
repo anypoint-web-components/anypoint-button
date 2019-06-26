@@ -6,10 +6,7 @@
 
 Anypoint styled button.
 
-Anypoint button by default is styled for Anypoint platform. Styles can be controlled by using recommended `emphasis` or legacy `type` proeprty.
-
-`type` property accepts one of pre-defied values used in Anypoint platform: `primary`, `secondary`, `tertiary`, and `danger`.
-However, because this way it is impossible to represent emphasis of a button except having different colours an `emphasis` property is a better choice to build importance gradation in the document.
+Anypoint button by default is styled for Anypoint platform. Styles can be controlled by using `emphasis` property ans CSS variables.
 
 `emphasis` can be one of `low`, `middle`, or `high`. Styles for each of it can be redefined using CSS variables.
 Low emphasis button should be used for less important actions.
@@ -27,11 +24,18 @@ npm install --save @anypoint-web-components/anypoint-button
 
 ```html
 <script type="module" src="node_modules/@anypoint-web-components/anypoint-button/anypoint-button.js"></script>
+<script type="module" src="node_modules/@anypoint-web-components/anypoint-button/anypoint-icon-button.js"></script>
 <anypoint-button emphasis="low">Low emphasis</anypoint-button>
 <anypoint-button emphasis="medium">Medium emphasis</anypoint-button>
 <anypoint-button emphasis="high">High emphasis</anypoint-button>
 <anypoint-button toggles>Button that toggles</anypoint-button>
 <anypoint-button disabled>You can't click me</anypoint-button>
+
+<anypoint-icon-button emphasis="low">
+  <button title="Add alarm">
+    <iron-icon icon="alarm-add"></iron-icon>
+  </button>
+</anypoint-icon-button>
 ```
 
 ### In a LitElement
@@ -39,6 +43,7 @@ npm install --save @anypoint-web-components/anypoint-button
 ```js
 import { LitElement, html } from 'lit-element';
 import '@anypoint-web-components/anypoint-button/anypoint-button.js';
+import '@anypoint-web-components/anypoint-button/anypoint-icon-button.js';
 
 class SimpleElement extends ControlStateMixin(ButtonStateMixin(LitElement)) {
   render() {
@@ -48,6 +53,12 @@ class SimpleElement extends ControlStateMixin(ButtonStateMixin(LitElement)) {
     <anypoint-button emphasis="high">High emphasis</anypoint-button>
     <anypoint-button toggles>Button that toggles</anypoint-button>
     <anypoint-button disabled>You can't click me</anypoint-button>
+
+    <anypoint-icon-button emphasis="low">
+      <button title="Add alarm">
+        <iron-icon icon="alarm-add"></iron-icon>
+      </button>
+    </anypoint-icon-button>
     `;
   }
 }

@@ -6,7 +6,12 @@
     <title>anypoint-button demo</title>
     <script type="module" src="../node_modules/@advanced-rest-client/arc-demo-helper/arc-demo-helper.js"></script>
     <script type="module" src="../node_modules/@anypoint-web-components/anypoint-styles/colors.js"></script>
+    <script type="module" src="../node_modules/@polymer/iron-icon/iron-icon.js"></script>
+    <script type="module" src="../node_modules/@polymer/iron-icons/iron-icons.js"></script>
+    <script type="module" src="../node_modules/@polymer/iron-icons/communication-icons.js"></script>
+    <script type="module" src="../node_modules/@polymer/iron-icons/editor-icons.js"></script>
     <script type="module" src="../anypoint-button.js"></script>
+    <script type="module" src="../anypoint-icon-button.js"></script>
     <style>
     ol {
       list-style: decimal outside;
@@ -16,63 +21,24 @@
       margin: 0;
       color: #5f6368;
     }
+
+    anypoint-button {
+      vertical-align: middle;
+    }
+
+    anypoint-icon-button {
+      margin: 10px;
+    }
+
+    anypoint-icon-button img {
+      width: 24px;
+      height: 24px;
+    }
     </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
-      <h2>Anypoint theme</h2>
-
-      <h2>Buttons can be flat, toggable, or disabled</h2>
-      <arc-demo-helper>
-        <template>
-          <anypoint-button>Click</anypoint-button>
-          <anypoint-button toggles>Click</anypoint-button>
-          <anypoint-button disabled>Click</anypoint-button>
-        </template>
-      </arc-demo-helper>
-
-      <h2>Buttons can be styled</h2>
-      <arc-demo-helper>
-        <template>
-          <anypoint-button class="styled">Click</anypoint-button>
-          <anypoint-button class="styled" toggles>Click</anypoint-button>
-          <anypoint-button class="styled" disabled>Click</anypoint-button>
-          <custom-style>
-            <style>
-            .styled {
-              --anypoint-button-background-color: #00A2DF;
-              --anypoint-button-color: #fff;
-              --anypoint-button-active-background-color: #4CAF50;
-              --anypoint-button-active-color: #fff;
-              --anypoint-button-focused-background-color: #087299;
-              --anypoint-button-focused-color: #fff;
-            }
-            </style>
-          </custom-style>
-        </template>
-      </arc-demo-helper>
-
-      <h2>Default theme buttons - types</h2>
-      <p>Try to shift to use "emphasis" instead of type.</p>
-      <arc-demo-helper>
-        <template>
-          <anypoint-button type="primary">Click</anypoint-button>
-          <anypoint-button type="secondary">Click</anypoint-button>
-          <anypoint-button type="tertiary">Click</anypoint-button>
-          <anypoint-button type="danger">Click</anypoint-button>
-        </template>
-      </arc-demo-helper>
-
-      <h2>Default theme buttons - types (toggles)</h2>
-      <p>Try to shift to use "emphasis" instead of type.</p>
-      <arc-demo-helper>
-        <template>
-          <anypoint-button type="primary" toggles>Click</anypoint-button>
-          <anypoint-button type="secondary" toggles>Click</anypoint-button>
-          <anypoint-button type="tertiary" toggles>Click</anypoint-button>
-          <anypoint-button type="danger" toggles>Click</anypoint-button>
-        </template>
-      </arc-demo-helper>
+      <h1>Anypoint button</h1>
 
       <h2>Button emphasis</h2>
       <ol class="lst-kix_sbqh7cx4vrbc-0 start" start="1">
@@ -90,90 +56,276 @@
           Contained buttons have more emphasis, as they use use a color fill and shadow.<br>
         </li>
       </ol>
-      <h3>Low emphasis</h3>
+
+      <h3>Low emphasis: Text button</h3>
       <arc-demo-helper>
         <template>
-          <anypoint-button emphasis="low">Click</anypoint-button>
-          <anypoint-button emphasis="low" toggles>Click</anypoint-button>
-          <anypoint-button emphasis="low" disabled>Click</anypoint-button>
+          <anypoint-button emphasis="low" title="Low emphasis button">Open</anypoint-button>
+          <anypoint-button emphasis="low" toggles title="Low emphasis togglable button">Send</anypoint-button>
+          <anypoint-button emphasis="low" toggles active title="Low emphasis togglable button">Toggle</anypoint-button>
+          <anypoint-button emphasis="low" disabled title="Low emphasis disabled button">Call</anypoint-button>
+          <anypoint-button emphasis="low" noink title="No ripple button">View</anypoint-button>
         </template>
       </arc-demo-helper>
 
-      <h3>Medium emphasis</h3>
+      <h3>Medium emphasis: Outlined button</h3>
       <arc-demo-helper>
         <template>
           <anypoint-button emphasis="medium">Click</anypoint-button>
           <anypoint-button emphasis="medium" toggles>Click</anypoint-button>
+          <anypoint-button emphasis="medium" toggles active>Toggle</anypoint-button>
           <anypoint-button emphasis="medium" disabled>Click</anypoint-button>
+          <anypoint-button emphasis="medium" noink>View</anypoint-button>
         </template>
       </arc-demo-helper>
 
-      <h3>High emphasis</h3>
+      <h3>High emphasis: Contained button</h3>
       <arc-demo-helper>
         <template>
           <anypoint-button emphasis="high">Click</anypoint-button>
           <anypoint-button emphasis="high" toggles>Click</anypoint-button>
+          <anypoint-button emphasis="high" toggles active>Toggle</anypoint-button>
           <anypoint-button emphasis="high" disabled>Click</anypoint-button>
+          <anypoint-button emphasis="high" noink>View</anypoint-button>
         </template>
       </arc-demo-helper>
 
-      <h2>MD theme</h2>
+      <h2>Icons in buttons</h2>
 
-      <h3>low emphasis</h3>
       <arc-demo-helper>
         <template>
-          <anypoint-button theme="md">Click</anypoint-button>
-          <anypoint-button theme="md" toggles>Click</anypoint-button>
-          <anypoint-button theme="md" disabled>Click</anypoint-button>
-        </template>
-      </arc-demo-helper>
-
-      <h3>medium emphasis</h3>
-      <arc-demo-helper>
-        <template>
-          <anypoint-button theme="md" class="medium-emphasis">Click</anypoint-button>
-          <anypoint-button theme="md" class="medium-emphasis" toggles>Click</anypoint-button>
-          <anypoint-button theme="md" class="medium-emphasis" disabled>Click</anypoint-button>
+          <anypoint-button emphasis="low" class="icons">
+            <iron-icon icon="card-giftcard"></iron-icon>
+            Send gift card
+          </anypoint-button>
+          <anypoint-button emphasis="medium" class="icons">
+            <iron-icon icon="open-in-new"></iron-icon>
+            More details
+          </anypoint-button>
+          <anypoint-button emphasis="high" class="icons">
+            <iron-icon icon="add-shopping-cart"></iron-icon>
+            Add to cart
+          </anypoint-button>
           <style>
-          .medium-emphasis {
-            --anypoint-button-color: #00A2DF;
-            --anypoint-button-border-color: #00A2DF;
+          .icons {
+            display: block;
+            margin: 8px 0;
+            text-align: center;
           }
           </style>
         </template>
       </arc-demo-helper>
 
-      <h3>high emphasis</h3>
+      <h1>Anypoint icon button</h1>
+
+      <h2>Button emphasis</h2>
+
+      <h3>Low emphasis</h3>
+
       <arc-demo-helper>
         <template>
-          <anypoint-button theme="md" class="high-emphasis">Click</anypoint-button>
-          <anypoint-button theme="md" class="high-emphasis" toggles>Click</anypoint-button>
-          <anypoint-button theme="md" class="high-emphasis" disabled>Click</anypoint-button>
-          <style>
-          .high-emphasis {
-            --anypoint-button-background-color: #00A2DF;
-            --anypoint-button-color: #fff;
-            --anypoint-button-border-color: #00A2DF;
-          }
-          </style>
+          <anypoint-icon-button emphasis="low">
+            <button title="Add alarm">
+              <iron-icon icon="alarm-add"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="low" toggles>
+            <button title="Start this project">
+              <iron-icon icon="star-border"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="low">
+            <button title="I am an image">
+              <img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="octocat">
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="low">
+            <button title="reply" disabled>
+              <iron-icon icon="reply"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="low" disabled>
+            <button title="reply">
+              <iron-icon icon="reply"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="low" noink>
+            <button title="cancel">
+              <iron-icon icon="cancel"></iron-icon>
+            </button>
+          </anypoint-icon-button>
         </template>
       </arc-demo-helper>
 
-      <h3>Border radius</h3>
+      <h3>Medium emphasis</h3>
+
       <arc-demo-helper>
         <template>
-          <anypoint-button theme="md" class="radius">Click</anypoint-button>
-          <anypoint-button theme="md" class="radius" toggles>Click</anypoint-button>
-          <anypoint-button theme="md" class="radius" disabled>Click</anypoint-button>
+          <anypoint-icon-button emphasis="medium">
+            <button title="Add alarm">
+              <iron-icon icon="alarm-add"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="medium" toggles>
+            <button title="Start this project">
+              <iron-icon icon="star-border"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="medium">
+            <button title="I am an image">
+              <img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="octocat">
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="medium">
+            <button title="reply" disabled>
+              <iron-icon icon="reply"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="medium" disabled>
+            <button title="reply">
+              <iron-icon icon="reply"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="medium" noink>
+            <button title="cancel">
+              <iron-icon icon="cancel"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+        </template>
+      </arc-demo-helper>
+
+      <h3>High emphasis</h3>
+
+      <arc-demo-helper>
+        <template>
+          <anypoint-icon-button emphasis="high">
+            <button title="Add alarm">
+              <iron-icon icon="alarm-add"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="high" toggles>
+            <button title="Start this project">
+              <iron-icon icon="star-border"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="high">
+            <button title="I am an image">
+              <img src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="octocat">
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="high">
+            <button title="reply" disabled>
+              <iron-icon icon="reply"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="high" disabled>
+            <button title="reply">
+              <iron-icon icon="reply"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button emphasis="high" noink>
+            <button title="cancel">
+              <iron-icon icon="cancel"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+        </template>
+      </arc-demo-helper>
+
+      <h2>Toggle buttons</h2>
+      <arc-demo-helper>
+        <template>
           <style>
-          .radius {
-            --anypoint-button-border-radius: 1px;
-            --anypoint-button-color: #00A2DF;
-            --anypoint-button-border-color: #00A2DF;
+          .content-control {
+            border: 1px #BDBDBD solid;
+            padding: 4px;
+            margin: -2px;
+            --anypoint-icon-button-emphasis-low-active-background-color: transparent;
+          }
+
+          .content-control[active] {
+            background-color: #EEEEEE;
+          }
+
+          .space {
+            display: inline-block;
+            width: 8px;
           }
           </style>
+
+          <anypoint-icon-button class="content-control" toggles>
+            <button title="Italic">
+              <iron-icon icon="editor:format-italic"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button class="content-control" toggles>
+            <button title="Bold">
+              <iron-icon icon="editor:format-bold"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button class="content-control" toggles>
+            <button title="Underlined">
+              <iron-icon icon="editor:format-underlined"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <anypoint-icon-button class="content-control" toggles>
+            <button title="Text color">
+              <iron-icon icon="editor:format-color-text"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+
+          <span class="space"></span>
+
+          <anypoint-icon-button class="content-control group" toggles>
+            <button title="Align text left">
+              <iron-icon icon="editor:format-align-left"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+          <anypoint-icon-button class="content-control group" toggles>
+            <button title="Align text center">
+              <iron-icon icon="editor:format-align-center"></iron-icon>
+            </button>
+          </anypoint-icon-button>
+          <anypoint-icon-button class="content-control group" toggles>
+            <button title="Align text right">
+              <iron-icon icon="editor:format-align-right"></iron-icon>
+            </button>
+          </anypoint-icon-button>
         </template>
       </arc-demo-helper>
     </div>
+    <script>
+    function contentControlClick(e) {
+      const items = document.querySelectorAll('.content-control.group');
+      Array.from(items).forEach((node) => {
+        if (node === e.currentTarget) {
+          return;
+        }
+        node.active = false;
+      });
+    }
+    window.customElements.whenDefined('anypoint-icon-button')
+    .then(() => {
+      const items = document.querySelectorAll('.content-control.group');
+      Array.from(items).forEach((node) => node.addEventListener('click', contentControlClick));
+    });
+    </script>
   </body>
 </html>

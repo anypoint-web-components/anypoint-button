@@ -1,5 +1,6 @@
 import { fixture, assert, aTimeout } from '@open-wc/testing';
 import { a11ySuite } from '@advanced-rest-client/a11y-suite/index.js';
+import sinon from 'sinon/pkg/sinon-esm.js';
 import '../anypoint-button.js';
 import '@polymer/iron-test-helpers/mock-interactions.js';
 
@@ -18,20 +19,16 @@ describe('<anypoint-button>', function() {
     return (await fixture(`<anypoint-button tabindex="-1">Button</anypoint-button>`));
   }
 
-  async function raisedFixture() {
-    return (await fixture(`<anypoint-button raised theme="md">Button</anypoint-button>`));
-  }
-
   async function togglesFixture() {
-    return (await fixture(`<anypoint-button toggles raised theme="md">Button</anypoint-button>`));
+    return (await fixture(`<anypoint-button toggles>Button</anypoint-button>`));
   }
 
   async function noinkFixture() {
-    return (await fixture(`<anypoint-button noink theme="md">Button</anypoint-button>`));
+    return (await fixture(`<anypoint-button noink>Button</anypoint-button>`));
   }
 
-  async function materialFixture() {
-    return (await fixture(`<anypoint-button theme="md">Button</anypoint-button>`));
+  async function highEmphasisFixture() {
+    return (await fixture(`<anypoint-button emphasis="high">Button</anypoint-button>`));
   }
 
   describe('a11y', () => {
@@ -59,45 +56,56 @@ describe('<anypoint-button>', function() {
     });
   });
 
-  describe('elevation states', () => {
+  describe('High emphasis state', () => {
     let element;
     beforeEach(async () => {
-      element = await raisedFixture();
+      element = await highEmphasisFixture();
     });
 
-    it('Normal state (no elevation)', async () => {
-      element = await basicFixture();
-      assert.equal(element.elevation, 0);
-    });
-
-    it('Has elevation when rised', () => {
+    it('Has elevation default elevation', () => {
       assert.equal(element.elevation, 1);
     });
 
-    it('No elevation when disabled', () => {
-      element.disabled = true;
-      assert.equal(element.elevation, 0);
+    it('Has elevation when toggles and active', () => {
+      element.toggles = true;
+      element.active = true;
+      assert.equal(element.elevation, 2);
     });
 
     it('pressed and released', function() {
       MockInteractions.down(element);
-      assert.equal(element.elevation, 4);
+      assert.equal(element.elevation, 3);
       MockInteractions.up(element);
       assert.equal(element.elevation, 1);
-      assert.ok(element.hasRipple());
     });
   });
 
-  describe('a button with toggles', function() {
+  describe('Low emphasis state', () => {
+    let element;
+    beforeEach(async () => {
+      element = await basicFixture();
+    });
+
+    it('Has default elevation', () => {
+      assert.equal(element.elevation, 0);
+    });
+
+    it('Has default emphasis', () => {
+      assert.equal(element.emphasis, 'low');
+    });
+  });
+
+  describe('A button with toggles', function() {
     let element;
     beforeEach(async () => {
       element = await togglesFixture();
+      element.emphasis = 'high';
     });
 
     it('activated by click', function(done) {
       MockInteractions.downAndUp(element, function() {
         try {
-          assert.equal(element.elevation, 4);
+          assert.equal(element.elevation, 2);
           done();
         } catch (e) {
           done(e);
@@ -107,8 +115,7 @@ describe('<anypoint-button>', function() {
 
     it('receives focused', async () => {
       MockInteractions.focus(element);
-      assert.equal(element.elevation, 3);
-      assert.ok(element.hasRipple());
+      assert.equal(element.elevation, 1);
     });
   });
 
@@ -119,25 +126,70 @@ describe('<anypoint-button>', function() {
       element = await noinkFixture();
       MockInteractions.down(element);
       MockInteractions.up(element);
-      const ripple = element.getRipple();
+      const ripple = element.shadowRoot.querySelector('paper-ripple');
       assert.isTrue(ripple.noink);
     });
 
     it('Resetting noink shows ripple', async () => {
       element = await noinkFixture();
       element.noink = false;
-      MockInteractions.down(element);
-      MockInteractions.up(element);
-      const ripple = element.getRipple();
+      await aTimeout();
+      element.noink = true;
+      const ripple = element.shadowRoot.querySelector('paper-ripple');
       assert.isFalse(ripple.noink);
     });
 
     it('Space bar runs ripple', async () => {
-      element = await materialFixture();
+      element = await highEmphasisFixture();
       MockInteractions.pressSpace(element);
       await aTimeout(40);
-      const ripple = element.getRipple();
+      const ripple = element.shadowRoot.querySelector('paper-ripple');
       assert.ok(ripple);
+    });
+  });
+
+  describe('_spaceKeyDownHandler()', () => {
+    let element;
+    beforeEach(async () => {
+      element = await basicFixture();
+    });
+
+    it('Calls _calculateElevation() when changing value', () => {
+      const spy = sinon.spy(element, '_calculateElevation');
+      element._spaceKeyDownHandler(new CustomEvent('keydown'));
+      assert.isTrue(spy.calledOnce, 'Function called');
+    });
+
+    it('Calls uiDownAction() on ripple effect', () => {
+      const spy = sinon.spy(element._ripple, 'uiDownAction');
+      element._spaceKeyDownHandler(new CustomEvent('keydown'));
+      assert.isTrue(spy.calledOnce, 'Function called');
+    });
+
+    it('Won\'t call uiDownAction() on ripple when animating', () => {
+      element._spaceKeyDownHandler(new CustomEvent('keydown'));
+      const spy = sinon.spy(element._ripple, 'uiDownAction');
+      element._spaceKeyDownHandler(new CustomEvent('keydown'));
+      assert.isFalse(spy.called, 'Function called');
+    });
+  });
+
+  describe('_spaceKeyUpHandler()', () => {
+    let element;
+    beforeEach(async () => {
+      element = await basicFixture();
+    });
+
+    it('Calls _calculateElevation() when changing value', () => {
+      const spy = sinon.spy(element, '_calculateElevation');
+      element._spaceKeyUpHandler(new CustomEvent('keyup'));
+      assert.isTrue(spy.calledOnce, 'Function called');
+    });
+
+    it('Calls uiUpAction() on ripple effect', () => {
+      const spy = sinon.spy(element._ripple, 'uiUpAction');
+      element._spaceKeyUpHandler(new CustomEvent('keyup'));
+      assert.isTrue(spy.calledOnce, 'Function called');
     });
   });
 });

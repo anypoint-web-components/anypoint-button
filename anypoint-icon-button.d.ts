@@ -5,7 +5,7 @@
  *   https://github.com/Polymer/tools/tree/master/packages/gen-typescript-declarations
  *
  * To modify these typings, edit the source file(s):
- *   anypoint-button.js
+ *   anypoint-icon-button.js
  */
 
 
@@ -22,11 +22,23 @@ declare namespace AnypointUi {
    * `anypoint-button`
    * Anypoint styled button.
    */
-  class AnypointButton extends AnypointButtonBase {
-    readonly _ripple: any;
+  class AnypointIconButton extends AnypointButtonBase {
+    noink: any;
     constructor();
+    _buttonStateChanged(): void;
     render(): any;
     connectedCallback(): void;
+    disconnectedCallback(): void;
+    firstUpdated(): void;
+    _ensureRipple(e: any): void;
+    getRipple(): any;
+    hasRipple(): any;
+    _createRipple(): any;
+    _noinkChanged(noink: any): void;
+    _rippleDown(): void;
+    _rippleUp(): void;
+    _downHandler(e: any): void;
+    _upHandler(e: any): void;
     _spaceKeyDownHandler(e: any): void;
     _spaceKeyUpHandler(e: any): void;
   }
@@ -35,6 +47,6 @@ declare namespace AnypointUi {
 declare global {
 
   interface HTMLElementTagNameMap {
-    "anypoint-button": AnypointUi.AnypointButton;
+    "anypoint-icon-button": AnypointUi.AnypointIconButton;
   }
 }
