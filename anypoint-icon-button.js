@@ -19,11 +19,7 @@ class AnypointIconButton extends AnypointButtonBase {
       position: relative;
       width: 40px;
       height: 40px;
-    }
-
-    :host(:focus),
-    :host(:hover) {
-
+      outline: none;
     }
 
     paper-ripple {
@@ -31,238 +27,208 @@ class AnypointIconButton extends AnypointButtonBase {
       color: currentColor;
     }
 
-    :host > ::slotted(button) {
-      position: relative;
-      width: 100%;
-      height: 100%;
+    :host ::slotted(*) {
       margin: 0;
       padding: 0;
-      background: transparent;
-      outline: none;
-      vertical-align: middle;
+      color: var(--anypoint-icon-button-color, var(--anypoint-color-primary));
+    }
+
+    .icon {
       cursor: pointer;
-      /* NOTE: Both values are needed, since some phones require the value to be "transparent". */
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      -webkit-tap-highlight-color: transparent;
       border-radius: 50%;
       border-width: 1px;
       border-style: solid;
       border-color: transparent;
-      color: var(--anypoint-icon-button-color, var(--anypoint-color-primary));
+
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    :host > ::slotted(button[disabled]),
-    :host([disabled]) > ::slotted(button) {
-      color: var(--anypoint-icon-button-disabled-color, #a8a8a8) !important;
+    :host([disabled]) {
       pointer-events: none;
       cursor: auto;
     }
+
+    :host([disabled]) ::slotted(*) {
+      color: var(--anypoint-icon-button-disabled-color, #a8a8a8) !important;
+    }
+
     /* Low emhasis styles */
-    :host([emphasis="low"]) > ::slotted(button:not(:disabled)) {
+    :host([emphasis="low"]:not(:disabled)) .icon {
       background-color: none;
       border-color: none;
-      color: var(--anypoint-icon-button-emphasis-low-color, var(--anypoint-color-primary));
       box-shadow: none !important;
     }
 
-    :host([emphasis="low"]) > ::slotted(button:hover) {
+    :host([emphasis="low"]:not(:disabled)) ::slotted(*) {
+      color: var(--anypoint-icon-button-emphasis-low-color, var(--anypoint-color-primary));
+    }
+
+    :host([emphasis="low"]:hover) .icon {
       background-color: var(--anypoint-icon-button-emphasis-low-hover-background-color, rgba(0, 162, 223, .08));
     }
 
-    :host([emphasis="low"]) > ::slotted(button:focus) {
+    :host([emphasis="low"][focused]) .icon {
       background-color: var(--anypoint-icon-button-emphasis-low-focus-background-color, rgba(0, 162, 223, .12));
     }
 
-    :host([emphasis="low"]) > ::slotted(button:active),
-    :host([emphasis="low"][active]) > ::slotted(button) {
+    :host([emphasis="low"][active]) .icon {
       background-color: var(--anypoint-icon-button-emphasis-low-active-background-color, rgba(0, 162, 223, .16));
+    }
+
+    :host([emphasis="low"][active]) ::slotted(*) {
       color: var(--anypoint-icon-button-emphasis-low-focus-color, var(--anypoint-color-coreBlue4));
     }
+
     /* Medium emphasis styles */
-    :host([emphasis="medium"]) > ::slotted(button) {
+    :host([emphasis="medium"]) .icon {
       border-color: var(--anypoint-icon-button-emphasis-medium-focus-border-color, var(--anypoint-color-robustBlue1));
       box-shadow: none !important;
     }
 
-    :host([emphasis="medium"][disabled]) > ::slotted(button),
-    :host([emphasis="medium"]) > ::slotted(button[disabled]) {
-      color: var(--anypoint-icon-button-disabled-color, #a8a8a8);
+    :host([emphasis="medium"][disabled]) .icon {
       border-color: var(--anypoint-icon-button-disabled-color, var(--anypoint-color-aluminum4));
     }
 
-    :host([emphasis="medium"]) > ::slotted(button:hover) {
+    :host([emphasis="medium"][disabled]) ::slotted(*) {
+      color: var(--anypoint-icon-button-disabled-color, #a8a8a8);
+    }
+
+    :host([emphasis="medium"]:hover) .icon {
       background-color: var(--anypoint-icon-button-emphasis-medium-hover-background-color, rgba(0, 162, 223, .06));
     }
 
-    :host([emphasis="medium"]) > ::slotted(button:focus) {
+    :host([emphasis="medium"][focused]) .icon {
       background-color: var(--anypoint-icon-button-emphasis-medium-focus-background-color, rgba(0, 162, 223, .08));
-      color: var(--anypoint-icon-button-emphasis-low-focus-color, var(--anypoint-color-coreBlue4));
       border-color: var(--anypoint-icon-button-emphasis-medium-focus-border-color, var(--anypoint-color-robustBlue2));
     }
 
-    :host([emphasis="medium"]) > ::slotted(button:active),
-    :host([emphasis="medium"][active]) > ::slotted(button) {
-      background-color: var(--anypoint-icon-button-emphasis-low-active-background-color, rgba(0, 162, 223, .16));
+    :host([emphasis="medium"][focused]) ::slotted(*) {
+      color: var(--anypoint-icon-button-emphasis-low-focus-color, var(--anypoint-color-coreBlue4));
+    }
+
+    :host([emphasis="medium"][active]) .icon {
+      background-color: var(--anypoint-icon-button-emphasis-low-active-background-color, rgba(94, 102, 249, 0.16));
     }
     /* High emphasis styles */
-    :host([emphasis="high"]) > ::slotted(button) {
+
+    :host([emphasis="high"]) .icon {
       transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
       will-change: box-shadow;
       background-color: var(--anypoint-icon-button-emphasis-high-background-color, var(--anypoint-color-primary));
+    }
+
+    :host([emphasis="high"]) ::slotted(*) {
       color: var(--anypoint-icon-button-emphasis-high-color, var(--anypoint-color-tertiary));
     }
 
-    :host([emphasis="high"][disabled]) > ::slotted(button),
-    :host([emphasis="high"]) > ::slotted(button[disabled]) {
+    :host([emphasis="high"][disabled]) .icon {
       background: var(--anypoint-icon-button-disabled-background-color, #eaeaea);
-      color: var(--anypoint-icon-button-disabled-color, #a8a8a8);
       box-shadow: none;
     }
 
-    :host([emphasis="high"]) > ::slotted(button:hover) {
+    :host([emphasis="high"][disabled]) ::slotted(*) {
+      color: var(--anypoint-icon-button-disabled-color, #a8a8a8);
+    }
+
+    :host([emphasis="high"]:hover) .icon {
       background-color: var(--anypoint-icon-button-emphasis-high-hover-background-color, rgba(0, 162, 223, 0.87));
     }
 
-    :host([elevation="1"]) > ::slotted(button) {
+    :host(:not([pressed])[emphasis="high"][active]) .icon {
+      background-color:
+        var(--anypoint-icon-button-emphasis-high-active-background-color, var(--anypoint-color-indigo3));
+    }
+
+    :host([elevation="1"]) .icon {
       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
                   0 1px 5px 0 rgba(0, 0, 0, 0.12),
                   0 3px 1px -2px rgba(0, 0, 0, 0.2);
     }
 
-    :host([elevation="2"]) > ::slotted(button),
-    :host([elevation][emphasis="high"]) > ::slotted(button:focus) {
+    :host([elevation="2"]) .icon,
+    :host([elevation][emphasis="high"][focused]) > .icon {
       box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
                   0 1px 10px 0 rgba(0, 0, 0, 0.12),
                   0 2px 4px -1px rgba(0, 0, 0, 0.4);
     }
 
-    :host([elevation="3"]) > ::slotted(button) {
+    :host([elevation="3"]) .icon {
       box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
                   0 1px 18px 0 rgba(0, 0, 0, 0.12),
                   0 3px 5px -1px rgba(0, 0, 0, 0.4);
     }
     `;
   }
+
   render() {
-    return html`<slot></slot>`;
+    return html`
+      <div class="icon">
+        <slot></slot>
+        <paper-ripple class="circle" center .noink="${this.noink}"></paper-ripple>
+      </div>
+    `;
   }
 
-  get noink() {
-    return this._noink;
-  }
-
-  set noink(value) {
-    if (this._setChanged('noink', value)) {
-      this._noinkChanged(value);
-    }
-  }
-
-  constructor() {
-    super();
-    this._rippleDown = this._rippleDown.bind(this);
-    this._rippleUp = this._rippleUp.bind(this);
+  get _ripple() {
+    return this.shadowRoot.querySelector('paper-ripple');
   }
 
   connectedCallback() {
-    super.connectedCallback();
-    this.addEventListener('mousedown', this._rippleDown);
-    this.addEventListener('mouseup', this._rippleUp);
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    this.removeEventListener('mousedown', this._rippleDown);
-    this.removeEventListener('mouseup', this._rippleUp);
-  }
-
-  firstUpdated() {
-    const slot = this.shadowRoot.querySelector('slot');
-    const nodes = slot.assignedNodes().filter((node) => node.nodeType === 1);
-    const button = nodes[0];
-    if (!button) {
-      return;
+    if (!this.hasAttribute('role')) {
+      this.setAttribute('role', 'button');
     }
-    this._rippleContainer = button;
-    button.addEventListener('focus', this._rippleDown);
-    button.addEventListener('blur', this._rippleUp);
-  }
-
-  _ensureRipple(e) {
-    if (!this.hasRipple()) {
-      this._ripple = this._createRipple();
-      this._ripple.noink = this.noink;
-      this._ripple.center = true;
-      this._ripple.classList.add('circle');
-      const rippleContainer = this._rippleContainer || this.shadowRoot;
-      if (rippleContainer) {
-        rippleContainer.appendChild(this._ripple);
-      }
-      if (e) {
-        const domContainer = this._rippleContainer || this;
-        const target = e.target;
-        if (domContainer.contains(/** @type {Node} */ (target))) {
-          this._ripple.uiDownAction(e);
-        }
-      }
+    if (!this.hasAttribute('tabindex')) {
+      this.setAttribute('tabindex', '0');
     }
-  }
-
-  getRipple() {
-    this._ensureRipple();
-    return this._ripple;
-  }
-
-  hasRipple() {
-    return Boolean(this._ripple);
-  }
-
-  _createRipple() {
-    const element = /** @type {!PaperRippleElement} */ (
-        document.createElement('paper-ripple'));
-    return element;
-  }
-
-  _noinkChanged(noink) {
-    if (this.hasRipple()) {
-      this._ripple.noink = noink;
-    }
-  }
-
-  _rippleDown() {
-    this.getRipple().uiDownAction();
-  }
-
-  _rippleUp() {
-    this.getRipple().uiUpAction();
-  }
-
-  _downHandler(e) {
-    super._downHandler(e);
-    if (this.pressed) {
-      this._ensureRipple(e);
-    }
-  }
-
-  _upHandler(e) {
-    super._upHandler(e);
-    if (this.hasRipple()) {
-      this._ripple.uiUpAction();
+    if (super.connectedCallback) {
+      super.connectedCallback();
     }
   }
 
   _spaceKeyDownHandler(e) {
     super._spaceKeyDownHandler(e);
-    this._calculateElevation();
+    this._enterDownHandler();
   }
 
   _spaceKeyUpHandler(e) {
     super._spaceKeyUpHandler(e);
-    this._calculateElevation();
-    this.click();
+    this._enterUpHandler();
   }
 
   _buttonStateChanged() {
     this._calculateElevation();
+  }
+
+  _keyDownHandler(e) {
+    super._keyDownHandler(e);
+    if (e.code === 'Enter' || e.code === 'NumpadEnter' || e.keyCode === 13) {
+      this._enterDownHandler();
+    }
+  }
+
+  _keyUpHandler(e) {
+    super._keyUpHandler(e);
+    if (e.code === 'Enter' || e.code === 'NumpadEnter' || e.keyCode === 13) {
+      this._enterUpHandler();
+    }
+  }
+
+  _enterDownHandler() {
+    this._calculateElevation();
+    if (!this._ripple.animating) {
+      this._ripple.uiDownAction();
+    }
+  }
+
+  _enterUpHandler() {
+    this._calculateElevation();
+    this._ripple.uiUpAction();
   }
 }
 window.customElements.define('anypoint-icon-button', AnypointIconButton);
