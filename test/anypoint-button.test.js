@@ -1,5 +1,4 @@
 import { fixture, assert, aTimeout } from '@open-wc/testing';
-import { a11ySuite } from '@advanced-rest-client/a11y-suite/index.js';
 import sinon from 'sinon/pkg/sinon-esm.js';
 import '../anypoint-button.js';
 import '@polymer/iron-test-helpers/mock-interactions.js';
@@ -32,9 +31,6 @@ describe('<anypoint-button>', function() {
   }
 
   describe('a11y', () => {
-    a11ySuite('Normal button', `<anypoint-button>Button</anypoint-button>`);
-    a11ySuite('Disabled button', `<anypoint-button disabled>Button</anypoint-button>`);
-
     it('Has role set', async () => {
       const element = await basicFixture();
       assert.equal(element.getAttribute('role'), 'button');
@@ -53,6 +49,16 @@ describe('<anypoint-button>', function() {
     it('Respects existing tabindex', async () => {
       const element = await tabindexFixture();
       assert.equal(element.getAttribute('tabindex'), '-1');
+    });
+
+    it('is accessible in normal state', async () => {
+      const element = await fixture(`<anypoint-button>Button</anypoint-button>`);
+      await assert.isAccessible(element);
+    });
+
+    it('is accessible in disabled state', async () => {
+      const element = await fixture(`<anypoint-button disabled>Button</anypoint-button>`);
+      await assert.isAccessible(element);
     });
   });
 

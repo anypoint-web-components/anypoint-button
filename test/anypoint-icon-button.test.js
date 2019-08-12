@@ -1,5 +1,4 @@
 import { fixture, assert, aTimeout } from '@open-wc/testing';
-import { a11ySuite } from '@advanced-rest-client/a11y-suite/index.js';
 import sinon from 'sinon/pkg/sinon-esm.js';
 import '../anypoint-icon-button.js';
 import '@polymer/iron-icon/iron-icon.js';
@@ -173,26 +172,36 @@ describe('<anypoint-icon-button>', function() {
   });
 
   describe('a11y', () => {
-    a11ySuite('Normal button', `<anypoint-icon-button>
-      <button>
-        <iron-icon icon="alarm-add"></iron-icon>
-      </button>
-    </anypoint-icon-button>`);
-    a11ySuite('Disabled button', `<anypoint-icon-button disabled>
-      <button disabled>
-        <iron-icon icon="alarm-add"></iron-icon>
-      </button>
-    </anypoint-icon-button>`);
-
-    a11ySuite('Active button', `<anypoint-icon-button toggles active>
-      <button>
-        <iron-icon icon="alarm-add"></iron-icon>
-      </button>
-    </anypoint-icon-button>`);
-
     it('Has role set', async () => {
       const element = await basicFixture();
       assert.equal(element.getAttribute('role'), 'button');
+    });
+
+    it('is accessible in normal state', async () => {
+      const element = await fixture(`<anypoint-icon-button>
+        <button aria-label="Click me">
+          <iron-icon icon="alarm-add"></iron-icon>
+        </button>
+      </anypoint-icon-button>`);
+      await assert.isAccessible(element);
+    });
+
+    it('is accessible in disabled state', async () => {
+      const element = await fixture(`<anypoint-icon-button disabled>
+        <button aria-label="Click me">
+          <iron-icon icon="alarm-add"></iron-icon>
+        </button>
+      </anypoint-icon-button>`);
+      await assert.isAccessible(element);
+    });
+
+    it('is accessible in active state', async () => {
+      const element = await fixture(`<anypoint-icon-button toggles active>
+        <button aria-label="Click me">
+          <iron-icon icon="alarm-add"></iron-icon>
+        </button>
+      </anypoint-icon-button>`);
+      await assert.isAccessible(element);
     });
   });
 });
