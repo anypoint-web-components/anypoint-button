@@ -29,7 +29,11 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
       /**
        * When set ripple effect is not rendered.
        */
-      noink: { type: Boolean }
+      noink: { type: Boolean },
+      /**
+       * Renders the button as a Anypoint styled button.
+       */
+      legacy: { type: Boolean, reflect: true }
     };
   }
 
@@ -53,6 +57,29 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
     }
   }
 
+  get legacy() {
+    return this._legacy;
+  }
+
+  set legacy(value) {
+    if (this._setChanged('legacy', value)) {
+      this._calculateElevation();
+    }
+  }
+
+  get elevation() {
+    return this._elevation;
+  }
+
+  set elevation(value) {
+    if (!value) {
+      value = 0;
+    }
+    if (this._setChanged('elevation', value)) {
+      this.setAttribute('elevation', String(value));
+    }
+  }
+
   constructor() {
     super();
     this.emphasis = 'low';
@@ -60,7 +87,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
 
   _calculateElevation() {
     let e = 0;
-    if (this.emphasis === 'high') {
+    if (this.emphasis === 'high' && !this.legacy) {
       if (this.toggles && this.active) {
         e = 2;
       } else if (this.pressed) {

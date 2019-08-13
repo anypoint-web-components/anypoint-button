@@ -33,7 +33,7 @@ class AnypointButton extends AnypointButtonBase {
       border-color: var(--anypoint-button-border-color, transparent);
       border-style: solid;
       border-radius: var(--anypoint-button-border-radius, 3px);
-      text-transform: var(--anypoint-button-text-transform);
+      text-transform: var(--anypoint-button-text-transform, uppercase);
     }
 
     :host([hidden]) {
@@ -91,7 +91,7 @@ class AnypointButton extends AnypointButtonBase {
     }
 
     :host(:not([pressed])[emphasis="medium"][active]) {
-      background-color: var(--anypoint-button-emphasis-low-active-background-color, rgba(0, 162, 223, .16));
+      background-color: var(--anypoint-button-emphasis-low-active-background-color, rgba(94, 102, 249, 0.16));
     }
 
     :host([emphasis="high"]) {
@@ -115,6 +115,10 @@ class AnypointButton extends AnypointButtonBase {
       background-color: var(--anypoint-button-emphasis-high-focus-background-color, rgba(0, 162, 223, 0.87));
     }
 
+    :host(:not([pressed])[emphasis="high"][active]) {
+      background-color: var(--anypoint-button-emphasis-high-active-background-color, var(--anypoint-color-indigo3));
+    }
+
     :host([elevation="1"]) {
       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
                   0 1px 5px 0 rgba(0, 0, 0, 0.12),
@@ -131,6 +135,35 @@ class AnypointButton extends AnypointButtonBase {
       box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
                   0 1px 18px 0 rgba(0, 0, 0, 0.12),
                   0 3px 5px -1px rgba(0, 0, 0, 0.4);
+    }
+
+    :host([legacy]) {
+      background-color: var(--anypoint-button-background-color, var(--anypoint-color-primary)) !important;
+      color: var(--anypoint-button-color, var(--anypoint-color-tertiary)) !important;
+      border-radius: 0;
+      text-transform: var(--anypoint-button-text-transform, initial);
+    }
+
+    :host([legacy]:hover),
+    :host([legacy]:focus) {
+      background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue2)) !important;
+    }
+
+    :host([legacy][pressed]) {
+      background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue4)) !important;
+    }
+
+    :host([legacy]) paper-ripple {
+      display: none;
+    }
+
+    :host([legacy][disabled]) {
+      background: var(--anypoint-button-disabled-background-color, #eaeaea) !important;
+      color: var(--anypoint-button-disabled-color, #a8a8a8) !important;
+    }
+
+    :host ::slotted(*) {
+      margin: 0 4px;
     }
     `;
   }
@@ -150,7 +183,9 @@ class AnypointButton extends AnypointButtonBase {
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', '0');
     }
-    super.connectedCallback();
+    if (super.connectedCallback) {
+      super.connectedCallback();
+    }
   }
 
   _spaceKeyDownHandler(e) {
