@@ -142,6 +142,7 @@ class AnypointButton extends AnypointButtonBase {
       color: var(--anypoint-button-color, var(--anypoint-color-tertiary)) !important;
       border-radius: 0;
       text-transform: var(--anypoint-button-text-transform, initial);
+      height: 40px;
     }
 
     :host([legacy]:hover),
