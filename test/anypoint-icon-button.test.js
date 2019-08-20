@@ -30,6 +30,18 @@ describe('<anypoint-icon-button>', function() {
     });
   });
 
+  describe('Initialization', () => {
+    it('can be constructed with document.createElement', () => {
+      const button = document.createElement('anypoint-icon-button');
+      assert.ok(button);
+    });
+
+    it('has default emphasis', async () => {
+      const button = await basicFixture();
+      assert.equal(button.emphasis, 'low');
+    });
+  });
+
   describe('_spaceKeyDownHandler()', () => {
     let element;
     beforeEach(async () => {

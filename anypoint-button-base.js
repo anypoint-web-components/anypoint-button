@@ -75,9 +75,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
     if (!value) {
       value = 0;
     }
-    if (this._setChanged('elevation', value)) {
-      this.setAttribute('elevation', String(value));
-    }
+    this._setChanged('elevation', value);
   }
 
   constructor() {
