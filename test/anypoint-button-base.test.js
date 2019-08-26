@@ -1,6 +1,6 @@
-import { assert } from '@open-wc/testing';
+import { assert, fixture, html } from '@open-wc/testing';
 import { AnypointButtonBase } from '../anypoint-button-base.js';
-import sinon from 'sinon/pkg/sinon-esm.js';
+import * as sinon from 'sinon/pkg/sinon-esm.js';
 
 // The base is not registered in custom elements registry and attempt to
 // initialize the class would end up with error.
@@ -65,32 +65,33 @@ describe('AnypointButtonBase', function() {
 
   describe('_calculateElevation()', () => {
     let base;
-    beforeEach(() => {
-      base = new AnypointButtonBase();
-      base.emphasis = 'high';
+    beforeEach(async () => {
+      base = await fixture(html`
+        <anypoint-button-base
+        emphasis="high"></anypoint-button-base>`);
     });
 
-    it('Sets elevation to 0 when not high', () => {
+    it('Sets elevation to 0 when not high', async () => {
       base.emphasis = 'low';
-      base._calculateElevation();
+      await base._calculateElevation();
       assert.equal(base.elevation, 0);
     });
 
-    it('Sets elevation to 2 when toggles and active', () => {
+    it('Sets elevation to 2 when toggles and active', async () => {
       base.toggles = true;
       base.active = true;
-      base._calculateElevation();
+      await base._calculateElevation();
       assert.equal(base.elevation, 2);
     });
 
-    it('Sets elevation to 3 when pressed', () => {
+    it('Sets elevation to 3 when pressed', async () => {
       base._pressed = true;
-      base._calculateElevation();
+      await base._calculateElevation();
       assert.equal(base.elevation, 3);
     });
 
-    it('Sets elevation to 1 otherwise', () => {
-      base._calculateElevation();
+    it('Sets elevation to 1 otherwise', async () => {
+      await base._calculateElevation();
       assert.equal(base.elevation, 1);
     });
   });

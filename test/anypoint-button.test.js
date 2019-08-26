@@ -1,5 +1,5 @@
-import { fixture, assert, aTimeout } from '@open-wc/testing';
-import sinon from 'sinon/pkg/sinon-esm.js';
+import { fixture, assert, aTimeout, nextFrame } from '@open-wc/testing';
+import * as sinon from 'sinon/pkg/sinon-esm.js';
 import '../anypoint-button.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 
@@ -82,16 +82,19 @@ describe('<anypoint-button>', function() {
       assert.equal(element.elevation, 1);
     });
 
-    it('Has elevation when toggles and active', () => {
+    it('Has elevation when toggles and active', async () => {
       element.toggles = true;
       element.active = true;
+      await nextFrame();
       assert.equal(element.elevation, 2);
     });
 
-    it('pressed and released', function() {
+    it('pressed and released', async function() {
       MockInteractions.down(element);
+      await nextFrame();
       assert.equal(element.elevation, 3);
       MockInteractions.up(element);
+      await nextFrame();
       assert.equal(element.elevation, 1);
     });
   });
@@ -120,17 +123,20 @@ describe('<anypoint-button>', function() {
 
     it('activated by click', function(done) {
       MockInteractions.downAndUp(element, function() {
-        try {
-          assert.equal(element.elevation, 2);
-          done();
-        } catch (e) {
-          done(e);
-        }
+        setTimeout(() => {
+          try {
+            assert.equal(element.elevation, 2);
+            done();
+          } catch (e) {
+            done(e);
+          }
+        });
       });
     });
 
     it('receives focused', async () => {
       MockInteractions.focus(element);
+      await nextFrame();
       assert.equal(element.elevation, 1);
     });
   });

@@ -83,7 +83,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
     this.emphasis = 'low';
   }
 
-  _calculateElevation() {
+  async _calculateElevation() {
     let e = 0;
     if (this.emphasis === 'high' && !this.legacy) {
       if (this.toggles && this.active) {
@@ -94,6 +94,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
         e = 1;
       }
     }
+    await this.updateComplete;
     this.elevation = e;
   }
 
