@@ -34,6 +34,7 @@ class AnypointButton extends AnypointButtonBase {
       border-style: solid;
       border-radius: var(--anypoint-button-border-radius, 3px);
       text-transform: var(--anypoint-button-text-transform, uppercase);
+      transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     :host([hidden]) {
@@ -49,7 +50,7 @@ class AnypointButton extends AnypointButtonBase {
       pointer-events: none;
     }
 
-    :host([emphasis="low"]) {
+    :host([emphasis="low"]:not([legacy])) {
       box-shadow: none !important;
     }
 
@@ -57,20 +58,20 @@ class AnypointButton extends AnypointButtonBase {
       color: var(--anypoint-button-disabled-color, #a8a8a8);
     }
 
-    :host(:not([pressed])[emphasis="low"]:hover) {
+    :host(:not([pressed]):not([legacy])[emphasis="low"]:hover) {
       background-color: var(--anypoint-button-emphasis-low-hover-background-color, rgba(0, 162, 223, .08));
     }
 
-    :host(:not([pressed])[emphasis="low"][focused]) {
+    :host(:not([pressed]):not([legacy])[emphasis="low"][focused]) {
       background-color: var(--anypoint-button-emphasis-low-focus-background-color, rgba(0, 162, 223, .12));
       color: var(--anypoint-button-emphasis-low-focus-color, var(--anypoint-color-coreBlue4));
     }
 
-    :host(:not([pressed])[emphasis="low"][active]) {
+    :host(:not([pressed]):not([legacy])[emphasis="low"][active]) {
       background-color: var(--anypoint-button-emphasis-low-active-background-color, rgba(0, 162, 223, .16));
     }
 
-    :host([emphasis="medium"]) {
+    :host([emphasis="medium"]:not([legacy])) {
       border-color: var(--anypoint-button-emphasis-medium-focus-border-color, var(--anypoint-color-robustBlue1));
       box-shadow: none !important;
     }
@@ -80,42 +81,41 @@ class AnypointButton extends AnypointButtonBase {
       border-color: var(--anypoint-button-disabled-color, var(--anypoint-color-aluminum4));
     }
 
-    :host(:not([pressed])[emphasis="medium"]:hover) {
+    :host(:not([pressed]):not([legacy])[emphasis="medium"]:hover) {
       background-color: var(--anypoint-button-emphasis-medium-hover-background-color, rgba(0, 162, 223, .06));
     }
 
-    :host(:not([pressed])[emphasis="medium"][focused]) {
+    :host(:not([pressed]):not([legacy])[emphasis="medium"][focused]) {
       background-color: var(--anypoint-button-emphasis-medium-focus-background-color, rgba(0, 162, 223, .08));
       color: var(--anypoint-button-emphasis-low-focus-color, var(--anypoint-color-coreBlue4));
       border-color: var(--anypoint-button-emphasis-medium-focus-border-color, var(--anypoint-color-robustBlue2));
     }
 
-    :host(:not([pressed])[emphasis="medium"][active]) {
+    :host(:not([pressed]):not([legacy])[emphasis="medium"][active]) {
       background-color: var(--anypoint-button-emphasis-low-active-background-color, rgba(94, 102, 249, 0.16));
     }
 
-    :host([emphasis="high"]) {
-      transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    :host([emphasis="high"]:not([legacy])) {
       will-change: box-shadow;
       background-color: var(--anypoint-button-emphasis-high-background-color, var(--anypoint-color-primary));
       color: var(--anypoint-button-emphasis-high-color, var(--anypoint-color-tertiary));
     }
 
-    :host([emphasis="high"][disabled]) {
+    :host([emphasis="high"][disabled]:not([legacy])) {
       background: var(--anypoint-button-disabled-background-color, #eaeaea);
       color: var(--anypoint-button-disabled-color, #a8a8a8);
       box-shadow: none;
     }
 
-    :host(:not([pressed])[emphasis="high"]:hover) {
+    :host(:not([pressed]):not([legacy])[emphasis="high"]:hover) {
       background-color: var(--anypoint-button-emphasis-high-hover-background-color, rgba(0, 162, 223, 0.87));
     }
 
-    :host(:not([pressed])[emphasis="high"]:focus) {
+    :host(:not([pressed]):not([legacy])[emphasis="high"]:focus) {
       background-color: var(--anypoint-button-emphasis-high-focus-background-color, rgba(0, 162, 223, 0.87));
     }
 
-    :host(:not([pressed])[emphasis="high"][active]) {
+    :host(:not([pressed]):not([legacy])[emphasis="high"][active]) {
       background-color: var(--anypoint-button-emphasis-high-active-background-color, var(--anypoint-color-indigo3));
     }
 
@@ -138,20 +138,27 @@ class AnypointButton extends AnypointButtonBase {
     }
 
     :host([legacy]) {
-      background-color: var(--anypoint-button-background-color, var(--anypoint-color-primary)) !important;
-      color: var(--anypoint-button-color, var(--anypoint-color-tertiary)) !important;
+      background-color: var(--anypoint-button-background-color, var(--anypoint-color-primary));
+      color: var(--anypoint-button-color, var(--anypoint-color-tertiary));
       border-radius: 0;
       text-transform: var(--anypoint-button-text-transform, initial);
       height: 40px;
     }
 
-    :host([legacy]:hover),
+    :host([legacy]:hover) {
+      background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue4));
+    }
+
     :host([legacy]:focus) {
-      background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue2)) !important;
+      box-shadow: var(--anypoint-button-foxus-box-shadow-color, 0 0 0 3px #abe2f5);
     }
 
     :host([legacy][pressed]) {
-      background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue4)) !important;
+      background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue5));
+    }
+
+    :host([legacy][active]) {
+      background-color: var(--anypoint-button-active-background-color, var(--anypoint-color-coreBlue5));
     }
 
     :host([legacy]) paper-ripple {
@@ -159,8 +166,8 @@ class AnypointButton extends AnypointButtonBase {
     }
 
     :host([legacy][disabled]) {
-      background: var(--anypoint-button-disabled-background-color, #eaeaea) !important;
-      color: var(--anypoint-button-disabled-color, #a8a8a8) !important;
+      background: var(--anypoint-button-disabled-background-color, #eaeaea);
+      color: var(--anypoint-button-disabled-color, #a8a8a8);
     }
 
     :host ::slotted(*) {
@@ -170,7 +177,9 @@ class AnypointButton extends AnypointButtonBase {
   }
 
   render() {
-    return html`<slot></slot><paper-ripple .noink="${this.noink}"></paper-ripple>`;
+    const { noink, legacy } = this;
+    const stopRipple = !!noink || !!legacy;
+    return html`<slot></slot><paper-ripple .noink="${stopRipple}"></paper-ripple>`;
   }
 
   get _ripple() {
