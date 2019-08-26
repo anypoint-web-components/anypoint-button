@@ -20,7 +20,6 @@ class AnypointButton extends AnypointButtonBase {
       box-sizing: border-box;
       min-width: 5.14em;
       margin: 0 0.29em;
-      background: transparent;
       outline-width: 0;
       user-select: none;
       cursor: pointer;
@@ -34,7 +33,7 @@ class AnypointButton extends AnypointButtonBase {
       border-style: solid;
       border-radius: var(--anypoint-button-border-radius, 3px);
       text-transform: var(--anypoint-button-text-transform, uppercase);
-      transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.18s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     :host([hidden]) {
@@ -58,7 +57,7 @@ class AnypointButton extends AnypointButtonBase {
       color: var(--anypoint-button-disabled-color, #a8a8a8);
     }
 
-    :host(:not([pressed]):not([legacy])[emphasis="low"]:hover) {
+    :host(:not([pressed])[emphasis="low"]:hover) {
       background-color: var(--anypoint-button-emphasis-low-hover-background-color, rgba(0, 162, 223, .08));
     }
 
@@ -67,13 +66,16 @@ class AnypointButton extends AnypointButtonBase {
       color: var(--anypoint-button-emphasis-low-focus-color, var(--anypoint-color-coreBlue4));
     }
 
-    :host(:not([pressed]):not([legacy])[emphasis="low"][active]) {
+    :host(:not([pressed])[emphasis="low"][active]) {
       background-color: var(--anypoint-button-emphasis-low-active-background-color, rgba(0, 162, 223, .16));
     }
 
     :host([emphasis="medium"]:not([legacy])) {
-      border-color: var(--anypoint-button-emphasis-medium-focus-border-color, var(--anypoint-color-robustBlue1));
       box-shadow: none !important;
+    }
+
+    :host([emphasis="medium"]) {
+      border-color: var(--anypoint-button-emphasis-medium-focus-border-color, var(--anypoint-color-robustBlue1));
     }
 
     :host([emphasis="medium"][disabled]) {
@@ -81,17 +83,17 @@ class AnypointButton extends AnypointButtonBase {
       border-color: var(--anypoint-button-disabled-color, var(--anypoint-color-aluminum4));
     }
 
-    :host(:not([pressed]):not([legacy])[emphasis="medium"]:hover) {
+    :host(:not([pressed])[emphasis="medium"]:hover) {
       background-color: var(--anypoint-button-emphasis-medium-hover-background-color, rgba(0, 162, 223, .06));
     }
 
-    :host(:not([pressed]):not([legacy])[emphasis="medium"][focused]) {
+    :host(:not([pressed])[emphasis="medium"][focused]) {
       background-color: var(--anypoint-button-emphasis-medium-focus-background-color, rgba(0, 162, 223, .08));
       color: var(--anypoint-button-emphasis-low-focus-color, var(--anypoint-color-coreBlue4));
       border-color: var(--anypoint-button-emphasis-medium-focus-border-color, var(--anypoint-color-robustBlue2));
     }
 
-    :host(:not([pressed]):not([legacy])[emphasis="medium"][active]) {
+    :host(:not([pressed])[emphasis="medium"][active]) {
       background-color: var(--anypoint-button-emphasis-low-active-background-color, rgba(94, 102, 249, 0.16));
     }
 
@@ -137,7 +139,7 @@ class AnypointButton extends AnypointButtonBase {
                   0 3px 5px -1px rgba(0, 0, 0, 0.4);
     }
 
-    :host([legacy]) {
+    :host([emphasis="high"][legacy]) {
       background-color: var(--anypoint-button-background-color, var(--anypoint-color-primary));
       color: var(--anypoint-button-color, var(--anypoint-color-tertiary));
       border-radius: 0;
@@ -145,19 +147,19 @@ class AnypointButton extends AnypointButtonBase {
       height: 40px;
     }
 
-    :host([legacy]:hover) {
+    :host([emphasis="high"][legacy]:hover) {
       background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue4));
     }
 
-    :host([legacy]:focus) {
+    :host([legacy][focused]) {
       box-shadow: var(--anypoint-button-foxus-box-shadow-color, 0 0 0 3px #abe2f5);
     }
 
-    :host([legacy][pressed]) {
+    :host([emphasis="high"][legacy][pressed]) {
       background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue5));
     }
 
-    :host([legacy][active]) {
+    :host([emphasis="high"][legacy][active]) {
       background-color: var(--anypoint-button-active-background-color, var(--anypoint-color-coreBlue5));
     }
 

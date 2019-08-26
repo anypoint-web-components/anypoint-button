@@ -32,7 +32,7 @@ class ComponentDemo extends ArcDemoPage {
     this._iconsEmphasisHandler = this._iconsEmphasisHandler.bind(this);
 
     this._componentName = 'anypoint-button';
-    this.buttonStates = ['Text', 'Outlined', 'Contained', 'Legacy'];
+    this.buttonStates = ['Text', 'Outlined', 'Contained'];
     this.demoButtonEmphasis = 'low';
     this.iconButtonEmphasis = 'low';
   }
@@ -45,12 +45,7 @@ class ComponentDemo extends ArcDemoPage {
       case 1: value = 'medium'; break;
       case 2: value = 'high'; break;
     }
-    if (value) {
-      this.demoButtonEmphasis = value;
-      this.demoButtonLegacy = false;
-    } else {
-      this.demoButtonLegacy = true;
-    }
+    this.demoButtonEmphasis = value;
   }
 
   _iconsEmphasisHandler(e) {
@@ -61,12 +56,7 @@ class ComponentDemo extends ArcDemoPage {
       case 1: value = 'medium'; break;
       case 2: value = 'high'; break;
     }
-    if (value) {
-      this.iconButtonEmphasis = value;
-      this.iconButtonLegacy = false;
-    } else {
-      this.iconButtonLegacy = true;
-    }
+    this.iconButtonEmphasis = value;
   }
 
   _toggleMainOption(e) {
@@ -145,6 +135,12 @@ class ComponentDemo extends ArcDemoPage {
             name="demoDisabed"
             @change="${this._toggleMainOption}"
             >Disabled</anypoint-checkbox>
+          <anypoint-checkbox
+            aria-describedby="mainOptionsLabel"
+            slot="options"
+            name="demoButtonLegacy"
+            @change="${this._toggleMainOption}"
+            >Anypoint</anypoint-checkbox>
         </arc-interactive-demo>
       </section>
     `;
@@ -312,6 +308,12 @@ class ComponentDemo extends ArcDemoPage {
             name="iconDisabed"
             @change="${this._toggleMainOption}"
             >Disabled</anypoint-checkbox>
+          <anypoint-checkbox
+            aria-describedby="mainOptionsLabel"
+            slot="options"
+            name="iconButtonLegacy"
+            @change="${this._toggleMainOption}"
+            >Anypoint</anypoint-checkbox>
         </arc-interactive-demo>
 
         <h3>More examples</h3>
