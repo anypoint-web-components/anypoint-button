@@ -5,7 +5,7 @@
  *   https://github.com/Polymer/tools/tree/master/packages/gen-typescript-declarations
  *
  * To modify these typings, edit the source file(s):
- *   anypoint-button-base.js
+ *   src/AnypointButtonBase.js
  */
 
 
@@ -18,11 +18,19 @@ import {ButtonStateMixin, ControlStateMixin} from '@anypoint-web-components/anyp
 
 export {AnypointButtonBase};
 
-declare class AnypointButtonBase {
+/**
+ * A base class for buttons.
+ */
+declare class AnypointButtonBase extends
+  ControlStateMixin(
+  ButtonStateMixin(
+  Object)) {
   emphasis: any;
   toggles: any;
+  legacy: any;
+  elevation: any;
   constructor();
-  _calculateElevation(): void;
+  _calculateElevation(): any;
   _controlStateChanged(): void;
   _buttonStateChanged(): void;
 }

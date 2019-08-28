@@ -4,7 +4,12 @@ import {
   ControlStateMixin
 } from '@anypoint-web-components/anypoint-control-mixins/anypoint-control-mixins.js';
 import '@polymer/paper-ripple/paper-ripple.js';
-
+/**
+ * A base class for buttons.
+ * @type {Class}
+ * @appliesMixin ControlStateMixin
+ * @appliesMixin ButtonStateMixin
+ */
 export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitElement)) {
   static get properties() {
     return {

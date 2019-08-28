@@ -10,31 +10,5 @@
 
 
 // tslint:disable:variable-name Describing an API that's defined elsewhere.
-// tslint:disable:no-any describes the API as best we are able today
 
-import {html, css} from 'lit-element';
-
-import {AnypointButtonBase} from './anypoint-button-base.js';
-
-declare namespace AnypointUi {
-
-  /**
-   * `anypoint-button`
-   * Anypoint styled button.
-   */
-  class AnypointButton extends AnypointButtonBase {
-    readonly _ripple: any;
-    constructor();
-    render(): any;
-    connectedCallback(): void;
-    _spaceKeyDownHandler(e: any): void;
-    _spaceKeyUpHandler(e: any): void;
-  }
-}
-
-declare global {
-
-  interface HTMLElementTagNameMap {
-    "anypoint-button": AnypointUi.AnypointButton;
-  }
-}
+import {AnypointButton} from './src/AnypointButton.js';
