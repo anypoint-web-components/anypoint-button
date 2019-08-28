@@ -36,10 +36,22 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
        */
       noink: { type: Boolean },
       /**
-       * Renders the button as a Anypoint styled button.
+       * @deprecated Use `compatibility` instead
        */
-      legacy: { type: Boolean, reflect: true }
+      legacy: { type: Boolean },
+      /**
+       * Enables compatibility with Anypoint components.
+       */
+      compatibility: { type: Boolean, reflect: true }
     };
+  }
+
+  get legacy() {
+    return this._compatibility;
+  }
+
+  set legacy(value) {
+    this.compatibility = value;
   }
 
   get emphasis() {
@@ -62,12 +74,12 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
     }
   }
 
-  get legacy() {
-    return this._legacy;
+  get compatibility() {
+    return this._compatibility;
   }
 
-  set legacy(value) {
-    if (this._setChanged('legacy', value)) {
+  set compatibility(value) {
+    if (this._setChanged('compatibility', value)) {
       this._calculateElevation();
     }
   }
@@ -90,7 +102,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
 
   async _calculateElevation() {
     let e = 0;
-    if (this.emphasis === 'high' && !this.legacy) {
+    if (this.emphasis === 'high' && !this.compatibility) {
       if (this.toggles && this.active) {
         e = 2;
       } else if (this.pressed) {

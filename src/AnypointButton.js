@@ -48,7 +48,7 @@ export class AnypointButton extends AnypointButtonBase {
       pointer-events: none;
     }
 
-    :host([emphasis="low"]:not([legacy])) {
+    :host([emphasis="low"]:not([compatibility])) {
       box-shadow: none !important;
     }
 
@@ -60,7 +60,7 @@ export class AnypointButton extends AnypointButtonBase {
       background-color: var(--anypoint-button-emphasis-low-hover-background-color, rgba(0, 162, 223, .08));
     }
 
-    :host(:not([pressed]):not([legacy])[emphasis="low"][focused]) {
+    :host(:not([pressed]):not([compatibility])[emphasis="low"][focused]) {
       background-color: var(--anypoint-button-emphasis-low-focus-background-color, rgba(0, 162, 223, .12));
       color: var(--anypoint-button-emphasis-low-focus-color, var(--anypoint-color-coreBlue4));
     }
@@ -69,7 +69,7 @@ export class AnypointButton extends AnypointButtonBase {
       background-color: var(--anypoint-button-emphasis-low-active-background-color, rgba(0, 162, 223, .16));
     }
 
-    :host([emphasis="medium"]:not([legacy])) {
+    :host([emphasis="medium"]:not([compatibility])) {
       box-shadow: none !important;
     }
 
@@ -96,27 +96,27 @@ export class AnypointButton extends AnypointButtonBase {
       background-color: var(--anypoint-button-emphasis-low-active-background-color, rgba(94, 102, 249, 0.16));
     }
 
-    :host([emphasis="high"]:not([legacy])) {
+    :host([emphasis="high"]:not([compatibility])) {
       will-change: box-shadow;
       background-color: var(--anypoint-button-emphasis-high-background-color, var(--anypoint-color-primary));
       color: var(--anypoint-button-emphasis-high-color, var(--anypoint-color-tertiary));
     }
 
-    :host([emphasis="high"][disabled]:not([legacy])) {
+    :host([emphasis="high"][disabled]:not([compatibility])) {
       background: var(--anypoint-button-disabled-background-color, #eaeaea);
       color: var(--anypoint-button-disabled-color, #a8a8a8);
       box-shadow: none;
     }
 
-    :host(:not([pressed]):not([legacy])[emphasis="high"]:hover) {
+    :host(:not([pressed]):not([compatibility])[emphasis="high"]:hover) {
       background-color: var(--anypoint-button-emphasis-high-hover-background-color, rgba(0, 162, 223, 0.87));
     }
 
-    :host(:not([pressed]):not([legacy])[emphasis="high"]:focus) {
+    :host(:not([pressed]):not([compatibility])[emphasis="high"]:focus) {
       background-color: var(--anypoint-button-emphasis-high-focus-background-color, rgba(0, 162, 223, 0.87));
     }
 
-    :host(:not([pressed]):not([legacy])[emphasis="high"][active]) {
+    :host(:not([pressed]):not([compatibility])[emphasis="high"][active]) {
       background-color: var(--anypoint-button-emphasis-high-active-background-color, var(--anypoint-color-indigo3));
     }
 
@@ -138,7 +138,7 @@ export class AnypointButton extends AnypointButtonBase {
                   0 3px 5px -1px rgba(0, 0, 0, 0.4);
     }
 
-    :host([emphasis="high"][legacy]) {
+    :host([emphasis="high"][compatibility]) {
       background-color: var(--anypoint-button-background-color, var(--anypoint-color-primary));
       color: var(--anypoint-button-color, var(--anypoint-color-tertiary));
       border-radius: 0;
@@ -146,27 +146,27 @@ export class AnypointButton extends AnypointButtonBase {
       height: 40px;
     }
 
-    :host([emphasis="high"][legacy]:hover) {
+    :host([emphasis="high"][compatibility]:hover) {
       background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue4));
     }
 
-    :host([legacy][focused]) {
+    :host([compatibility][focused]) {
       box-shadow: var(--anypoint-button-foxus-box-shadow-color, 0 0 0 3px #abe2f5);
     }
 
-    :host([emphasis="high"][legacy][pressed]) {
+    :host([emphasis="high"][compatibility][pressed]) {
       background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue5));
     }
 
-    :host([emphasis="high"][legacy][active]) {
+    :host([emphasis="high"][compatibility][active]) {
       background-color: var(--anypoint-button-active-background-color, var(--anypoint-color-coreBlue5));
     }
 
-    :host([legacy]) paper-ripple {
+    :host([compatibility]) paper-ripple {
       display: none;
     }
 
-    :host([legacy][disabled]) {
+    :host([compatibility][disabled]) {
       background: var(--anypoint-button-disabled-background-color, #eaeaea);
       color: var(--anypoint-button-disabled-color, #a8a8a8);
     }
@@ -178,8 +178,8 @@ export class AnypointButton extends AnypointButtonBase {
   }
 
   render() {
-    const { noink, legacy } = this;
-    const stopRipple = !!noink || !!legacy;
+    const { noink, compatibility } = this;
+    const stopRipple = !!noink || !!compatibility;
     return html`<slot></slot><paper-ripple .noink="${stopRipple}"></paper-ripple>`;
   }
 

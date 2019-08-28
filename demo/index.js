@@ -15,12 +15,12 @@ class ComponentDemo extends ArcDemoPage {
     super();
     this.initObservableProperties([
       'demoButtonEmphasis',
-      'demoButtonLegacy',
+      'demoButtonCompatibility',
       'demoToggles',
       'demoLeadingIcon',
       'demoNoink',
       'demoDisabed',
-      'iconButtonLegacy',
+      'iconButtonCompatibility',
       'iconButtonEmphasis',
       'iconNoink',
       'iconDisabed',
@@ -78,7 +78,7 @@ class ComponentDemo extends ArcDemoPage {
     const {
       buttonStates,
       demoButtonEmphasis,
-      demoButtonLegacy,
+      demoButtonCompatibility,
       demoNoink,
       demoToggles,
       demoLeadingIcon,
@@ -101,7 +101,7 @@ class ComponentDemo extends ArcDemoPage {
             slot="content"
             emphasis="${demoButtonEmphasis}"
             title="Low emphasis button"
-            ?legacy="${demoButtonLegacy}"
+            ?compatibility="${demoButtonCompatibility}"
             ?noink="${demoNoink}"
             ?toggles="${demoToggles}"
             ?disabled="${demoDisabed}"
@@ -138,7 +138,7 @@ class ComponentDemo extends ArcDemoPage {
           <anypoint-checkbox
             aria-describedby="mainOptionsLabel"
             slot="options"
-            name="demoButtonLegacy"
+            name="demoButtonCompatibility"
             @change="${this._toggleMainOption}"
             >Anypoint</anypoint-checkbox>
         </arc-interactive-demo>
@@ -176,7 +176,7 @@ class ComponentDemo extends ArcDemoPage {
           <li><b>Outlined</b> - For medium emphasis actions</li>
           <li><b>Filled</b> - For primary actions</li>
           <li>
-            <b>Legacy</b> - To provide compatibility with legacy Anypoint design
+            <b>Compatibility</b> - To provide compatibility with Anypoint design
           </li>
         </ul>
 
@@ -210,9 +210,9 @@ class ComponentDemo extends ArcDemoPage {
           button or change in the information architecture.
         </p>
 
-        <h4>Legacy buttons</h4>
+        <h4>Compatibility buttons</h4>
         <p>
-          Do not use legacy buttons in your UI. These are to ensure compatibility
+          Do not use <code>compatibility</code> buttons in your UI. These are to ensure compatibility
           with Anypoint applications.
         </p>
 
@@ -246,7 +246,7 @@ class ComponentDemo extends ArcDemoPage {
     const {
       buttonStates,
       iconButtonEmphasis,
-      iconButtonLegacy,
+      iconButtonCompatibility,
       iconNoink,
       iconToggles,
       iconDisabed,
@@ -279,7 +279,7 @@ class ComponentDemo extends ArcDemoPage {
             slot="content"
             emphasis="${iconButtonEmphasis}"
             title="Icon button"
-            ?legacy="${iconButtonLegacy}"
+            ?compatibility="${iconButtonCompatibility}"
             ?noink="${iconNoink}"
             ?toggles="${iconToggles}"
             ?disabled="${iconDisabed}"
@@ -311,7 +311,7 @@ class ComponentDemo extends ArcDemoPage {
           <anypoint-checkbox
             aria-describedby="mainOptionsLabel"
             slot="options"
-            name="iconButtonLegacy"
+            name="iconButtonCompatibility"
             @change="${this._toggleMainOption}"
             >Anypoint</anypoint-checkbox>
         </arc-interactive-demo>
