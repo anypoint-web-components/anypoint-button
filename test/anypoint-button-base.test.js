@@ -1,5 +1,5 @@
 import { assert, fixture, html } from '@open-wc/testing';
-import { AnypointButtonBase } from '../anypoint-button-base.js';
+import { AnypointButtonBase } from '../src/AnypointButtonBase.js';
 import * as sinon from 'sinon/pkg/sinon-esm.js';
 
 // The base is not registered in custom elements registry and attempt to
