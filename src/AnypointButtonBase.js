@@ -47,7 +47,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
   }
 
   get legacy() {
-    return this._compatibility;
+    return this.compatibility;
   }
 
   set legacy(value) {
