@@ -141,7 +141,7 @@ export class AnypointButton extends AnypointButtonBase {
     :host([emphasis="high"][compatibility]) {
       background-color: var(--anypoint-button-background-color, var(--anypoint-color-primary));
       color: var(--anypoint-button-color, var(--anypoint-color-tertiary));
-      border-radius: 0;
+      border-radius: var(--anypoint-button-border-radius, 2px);
       text-transform: var(--anypoint-button-text-transform, initial);
       height: 40px;
     }
