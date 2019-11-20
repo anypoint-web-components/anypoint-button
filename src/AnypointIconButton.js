@@ -11,7 +11,7 @@ import '@polymer/paper-ripple/paper-ripple.js';
  * @memberof AnypointUi
  */
 export class AnypointIconButton extends AnypointButtonBase {
-  static get styles() {
+  get styles() {
     return css`
     :host {
       display: inline-block;
@@ -166,7 +166,7 @@ export class AnypointIconButton extends AnypointButtonBase {
   }
 
   render() {
-    return html`
+    return html`<style>${this.styles}</style>
       <div class="icon">
         <slot></slot>
         <paper-ripple class="circle" center .noink="${this.noink}"></paper-ripple>

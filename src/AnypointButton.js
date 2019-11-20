@@ -10,7 +10,7 @@ import '@polymer/paper-ripple/paper-ripple.js';
  * @memberof AnypointUi
  */
 export class AnypointButton extends AnypointButtonBase {
-  static get styles() {
+  get styles() {
     return css`:host {
       display: inline-flex;
       justify-content: center;
@@ -183,7 +183,7 @@ export class AnypointButton extends AnypointButtonBase {
   render() {
     const { noink, compatibility } = this;
     const stopRipple = !!noink || !!compatibility;
-    return html`<slot></slot><paper-ripple .noink="${stopRipple}"></paper-ripple>`;
+    return html`<style>${this.styles}</style><slot></slot><paper-ripple .noink="${stopRipple}"></paper-ripple>`;
   }
 
   get _ripple() {
