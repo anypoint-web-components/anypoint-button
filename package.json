@@ -1,7 +1,7 @@
 {
   "name": "@anypoint-web-components/anypoint-button",
   "description": "Anypoint styled button.",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "license": "Apache-2.0",
   "main": "anypoint-button.js",
   "keywords": [
