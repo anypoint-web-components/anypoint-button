@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/anypoint-web-components/anypoint-button.svg)](https://travis-ci.org/anypoint-web-components/anypoint-button)
+[![Build Status](https://travis-ci.com/anypoint-web-components/anypoint-button.svg)](https://travis-ci.com/anypoint-web-components/anypoint-button)
 
 [![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/anypoint-button.svg)](https://www.npmjs.com/package/@anypoint-web-components/anypoint-button)
 
