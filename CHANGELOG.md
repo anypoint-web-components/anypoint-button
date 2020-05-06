@@ -236,3 +236,24 @@
 * updated Travis configuration to connect to Sauce Labs [182d64a](https://github.com/anypoint-web-components/anypoint-button/commit/182d64a27249b45acae6bbdf5eb371c7cc5861aa) by Pawel
 
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/anypoint-web-components/anypoint-button/compare/1.0.15...1.1.1) (2020-05-06)
+
+### Build
+
+* bumping version [fcc22d0](https://github.com/anypoint-web-components/anypoint-button/commit/fcc22d071a5aac4ac866516433ae3f82387b2683) by Pawel
+* bumping version [971dbc2](https://github.com/anypoint-web-components/anypoint-button/commit/971dbc2a9c9271648928b6a40a0846f46b5be7c2) by Pawel
+
+
+### Update
+
+* adding base class to index exports [612b99a](https://github.com/anypoint-web-components/anypoint-button/commit/612b99a0d52e6f98a91b9f1a31321d6d2b52f045) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [fa3e8fc](https://github.com/anypoint-web-components/anypoint-button/commit/fa3e8fcb83b8d4c5633af16a5d231d05b53f18f0) by Ci agent
+* upgrading dependencies and adding types [c447658](https://github.com/anypoint-web-components/anypoint-button/commit/c447658e527e8a2693a708f49ed56b65bc5b9e97) by Pawel
+
+
+### Documentation
+
+* updating travis URL [3250957](https://github.com/anypoint-web-components/anypoint-button/commit/32509578a481da6b801ef52e342f9e32ea1805a3) by Pawel
+
+
