@@ -1,26 +1,33 @@
 import { html } from 'lit-element';
-import { AnypointButtonBase } from './AnypointButtonBase.js';
 import '@polymer/paper-ripple/paper-ripple.js';
-import styles from './Styles.js';
+import { AnypointButtonBase } from './AnypointButtonBase.js';
+import elementStyles from './Styles.js';
+
+/** @typedef {import('@polymer/paper-ripple').PaperRippleElement} PaperRippleElement */
+
 /**
  * `anypoint-button`
  * Anypoint styled button.
  *
- * @customElement
  * @demo demo/index.html
- * @memberof AnypointUi
  */
 export class AnypointButton extends AnypointButtonBase {
+  /* eslint-disable class-methods-use-this */
   get styles() {
-    return styles;
+    return elementStyles;
   }
 
   render() {
-    const { noink, compatibility } = this;
+    const { noink, compatibility, styles } = this;
     const stopRipple = !!noink || !!compatibility;
-    return html`<style>${this.styles}</style><slot></slot><paper-ripple .noink="${stopRipple}"></paper-ripple>`;
+    return html`<style>
+        ${styles}</style
+      ><slot></slot><paper-ripple .noink="${stopRipple}"></paper-ripple>`;
   }
 
+  /**
+   * @return {PaperRippleElement} A reference to the PaperRippleElement in the local DOM.
+   */
   get _ripple() {
     return this.shadowRoot.querySelector('paper-ripple');
   }
@@ -40,8 +47,9 @@ export class AnypointButton extends AnypointButtonBase {
   _spaceKeyDownHandler(e) {
     super._spaceKeyDownHandler(e);
     this._calculateElevation();
-    if (!this._ripple.animating) {
-      this._ripple.uiDownAction();
+    const { _ripple } = this;
+    if (!_ripple.animating) {
+      _ripple.uiDownAction();
     }
   }
 

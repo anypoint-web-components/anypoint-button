@@ -1,21 +1,21 @@
 import { fixture, assert } from '@open-wc/testing';
-import * as sinon from 'sinon/pkg/sinon-esm.js';
+import * as sinon from 'sinon';
 import '../anypoint-icon-button.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-icons/iron-icons.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 
-describe('<anypoint-icon-button>', function() {
+describe('<anypoint-icon-button>', () => {
   async function basicFixture() {
-    return (await fixture(`<anypoint-icon-button>
+    return fixture(`<anypoint-icon-button>
         <iron-icon icon="alarm-add"></iron-icon>
-    </anypoint-icon-button>`));
+    </anypoint-icon-button>`);
   }
 
   async function noinkFixture() {
-    return (await fixture(`<anypoint-icon-button noink>
+    return fixture(`<anypoint-icon-button noink>
         <iron-icon icon="alarm-add"></iron-icon>
-    </anypoint-icon-button>`));
+    </anypoint-icon-button>`);
   }
 
   describe('Basics', () => {
@@ -163,7 +163,9 @@ describe('<anypoint-icon-button>', function() {
     });
 
     it('respects existing role', async () => {
-      const element = await fixture(`<anypoint-icon-button role="test"></anypoint-icon-button>`);
+      const element = await fixture(
+        `<anypoint-icon-button role="test"></anypoint-icon-button>`
+      );
       assert.equal(element.getAttribute('role'), 'test');
     });
 
@@ -173,7 +175,9 @@ describe('<anypoint-icon-button>', function() {
     });
 
     it('respects existing tabindex', async () => {
-      const element = await fixture(`<anypoint-icon-button tabindex="1"></anypoint-icon-button>`);
+      const element = await fixture(
+        `<anypoint-icon-button tabindex="1"></anypoint-icon-button>`
+      );
       assert.equal(element.getAttribute('tabindex'), '1');
     });
 

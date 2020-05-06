@@ -1,16 +1,17 @@
 import { LitElement } from 'lit-element';
-import {
-  ButtonStateMixin,
-  ControlStateMixin
-} from '@anypoint-web-components/anypoint-control-mixins/anypoint-control-mixins.js';
+// import { ButtonStateMixin, ControlStateMixin } from '@anypoint-web-components/anypoint-control-mixins/index.js';
+import { ControlStateMixin } from '@anypoint-web-components/anypoint-control-mixins/src/ControlStateMixin.js';
+import { ButtonStateMixin } from '@anypoint-web-components/anypoint-control-mixins/src/ButtonStateMixin.js';
 import '@polymer/paper-ripple/paper-ripple.js';
+
 /**
- * A base class for buttons.
- * @type {Class}
- * @appliesMixin ControlStateMixin
- * @appliesMixin ButtonStateMixin
+ * A base class for Anypoint buttons.
+ * Use this class to create buttons that can be elevated (Material Design) and has
+ * compatibility layer with the Anypoint platform.
  */
-export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitElement)) {
+export class AnypointButtonBase extends ControlStateMixin(
+  ButtonStateMixin(LitElement)
+) {
   static get properties() {
     return {
       /**
@@ -34,7 +35,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
       /**
        * When set ripple effect is not rendered.
        */
-      noink: { type: Boolean },
+      noink: { type: Boolean, reflect: true },
       /**
        * @deprecated Use `compatibility` instead
        */
@@ -42,7 +43,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
       /**
        * Enables compatibility with Anypoint components.
        */
-      compatibility: { type: Boolean, reflect: true }
+      compatibility: { type: Boolean, reflect: true },
     };
   }
 
@@ -59,9 +60,13 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
   }
 
   set emphasis(value) {
-    if (this._setChanged('emphasis', value)) {
-      this._calculateElevation();
+    const old = this._emphasis;
+    if (old === value) {
+      return;
     }
+    this._emphasis = value;
+    this._calculateElevation();
+    this.requestUpdate('emphasis', old);
   }
 
   get toggles() {
@@ -69,9 +74,13 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
   }
 
   set toggles(value) {
-    if (this._setChanged('toggles', value)) {
-      this._calculateElevation();
+    const old = this._toggles;
+    if (old === value) {
+      return;
     }
+    this._toggles = value;
+    this._calculateElevation();
+    this.requestUpdate('toggles', old);
   }
 
   get compatibility() {
@@ -79,20 +88,13 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
   }
 
   set compatibility(value) {
-    if (this._setChanged('compatibility', value)) {
-      this._calculateElevation();
+    const old = this._compatibility;
+    if (old === value) {
+      return;
     }
-  }
-
-  get elevation() {
-    return this._elevation;
-  }
-
-  set elevation(value) {
-    if (!value) {
-      value = 0;
-    }
-    this._setChanged('elevation', value);
+    this._compatibility = value;
+    this._calculateElevation();
+    this.requestUpdate('compatibility', old);
   }
 
   constructor() {
@@ -100,6 +102,11 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
     this.emphasis = 'low';
   }
 
+  /**
+   * Computes current elevation for the material design.
+   * The `emphasis` property is set when the updates are commited.
+   * @return {Promise}
+   */
   async _calculateElevation() {
     let e = 0;
     if (this.emphasis === 'high' && !this.compatibility) {

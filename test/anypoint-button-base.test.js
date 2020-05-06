@@ -1,15 +1,18 @@
-import { assert, fixture, html } from '@open-wc/testing';
+import { assert, fixture, html, nextFrame, aTimeout } from '@open-wc/testing';
+import * as sinon from 'sinon';
 import { AnypointButtonBase } from '../src/AnypointButtonBase.js';
-import * as sinon from 'sinon/pkg/sinon-esm.js';
 
-// The base is not registered in custom elements registry and attempt to
-// initialize the class would end up with error.
-window.customElements.define('anypoint-button-base', AnypointButtonBase);
+class TestButton extends AnypointButtonBase {
+  render() {
+    return html`<slot></slot>`;
+  }
+}
+window.customElements.define('anypoint-button-base', TestButton);
 
-describe('AnypointButtonBase', function() {
+describe('AnypointButtonBase', () => {
   describe('constructor()', () => {
     it('Sets emphasis value', () => {
-      const base = new AnypointButtonBase();
+      const base = new TestButton();
       assert.equal(base.emphasis, 'low');
     });
   });
@@ -17,23 +20,26 @@ describe('AnypointButtonBase', function() {
   describe('emphasis setter and getter', () => {
     let base;
     beforeEach(() => {
-      base = new AnypointButtonBase();
+      base = new TestButton();
     });
 
-    it('Sets other values', () => {
+    it('Sets other values', async () => {
       base.emphasis = 'medium';
+      await nextFrame();
       assert.equal(base._emphasis, 'medium');
     });
 
-    it('Calls _calculateElevation() when changing value', () => {
+    it('Calls _calculateElevation() when changing value', async () => {
       const spy = sinon.spy(base, '_calculateElevation');
       base.emphasis = 'medium';
+      await aTimeout(100);
       assert.isTrue(spy.calledOnce, 'Function called');
     });
 
-    it('Ignores _calculateElevation() when not changing value', () => {
+    it('Ignores _calculateElevation() when not changing value', async () => {
       const spy = sinon.spy(base, '_calculateElevation');
       base.emphasis = 'low';
+      await nextFrame();
       assert.isFalse(spy.called);
     });
   });
@@ -41,7 +47,7 @@ describe('AnypointButtonBase', function() {
   describe('compatibility mode', () => {
     let base;
     beforeEach(() => {
-      base = new AnypointButtonBase();
+      base = new TestButton();
     });
 
     it('sets compatibility on item when setting legacy', async () => {
@@ -59,7 +65,7 @@ describe('AnypointButtonBase', function() {
   describe('toggles setter and getter', () => {
     let base;
     beforeEach(() => {
-      base = new AnypointButtonBase();
+      base = new TestButton();
       base.toggles = false;
     });
 
@@ -84,9 +90,9 @@ describe('AnypointButtonBase', function() {
   describe('_calculateElevation()', () => {
     let base;
     beforeEach(async () => {
-      base = await fixture(html`
-        <anypoint-button-base
-        emphasis="high"></anypoint-button-base>`);
+      base = await fixture(html` <anypoint-button-base
+        emphasis="high"
+      ></anypoint-button-base>`);
     });
 
     it('Sets elevation to 0 when not high', async () => {
@@ -116,7 +122,7 @@ describe('AnypointButtonBase', function() {
 
   describe('_controlStateChanged()', () => {
     it('Calls _calculateElevation()', () => {
-      const base = new AnypointButtonBase();
+      const base = new TestButton();
       const spy = sinon.spy(base, '_calculateElevation');
       base._controlStateChanged();
       assert.isTrue(spy.called, 'Function called');
@@ -125,7 +131,7 @@ describe('AnypointButtonBase', function() {
 
   describe('_buttonStateChanged()', () => {
     it('Calls _calculateElevation()', () => {
-      const base = new AnypointButtonBase();
+      const base = new TestButton();
       const spy = sinon.spy(base, '_calculateElevation');
       base._buttonStateChanged();
       assert.isTrue(spy.called, 'Function called');

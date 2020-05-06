@@ -1,31 +1,33 @@
 import { fixture, assert, aTimeout, nextFrame } from '@open-wc/testing';
-import * as sinon from 'sinon/pkg/sinon-esm.js';
+import * as sinon from 'sinon';
 import '../anypoint-button.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 
-describe('<anypoint-button>', function() {
+describe('<anypoint-button>', () => {
   async function basicFixture() {
-    return (await fixture(`<anypoint-button>Button</anypoint-button>`));
+    return fixture(`<anypoint-button>Button</anypoint-button>`);
   }
 
   async function roleFixture() {
-    return (await fixture(`<anypoint-button role="radiobutton">Button</anypoint-button>`));
+    return fixture(
+      `<anypoint-button role="radiobutton">Button</anypoint-button>`
+    );
   }
 
   async function tabindexFixture() {
-    return (await fixture(`<anypoint-button tabindex="-1">Button</anypoint-button>`));
+    return fixture(`<anypoint-button tabindex="-1">Button</anypoint-button>`);
   }
 
   async function togglesFixture() {
-    return (await fixture(`<anypoint-button toggles>Button</anypoint-button>`));
+    return fixture(`<anypoint-button toggles>Button</anypoint-button>`);
   }
 
   async function noinkFixture() {
-    return (await fixture(`<anypoint-button noink>Button</anypoint-button>`));
+    return fixture(`<anypoint-button noink>Button</anypoint-button>`);
   }
 
   async function highEmphasisFixture() {
-    return (await fixture(`<anypoint-button emphasis="high">Button</anypoint-button>`));
+    return fixture(`<anypoint-button emphasis="high">Button</anypoint-button>`);
   }
 
   describe('a11y', () => {
@@ -50,12 +52,16 @@ describe('<anypoint-button>', function() {
     });
 
     it('is accessible in normal state', async () => {
-      const element = await fixture(`<anypoint-button>Button</anypoint-button>`);
+      const element = await fixture(
+        `<anypoint-button>Button</anypoint-button>`
+      );
       await assert.isAccessible(element);
     });
 
     it('is accessible in disabled state', async () => {
-      const element = await fixture(`<anypoint-button disabled>Button</anypoint-button>`);
+      const element = await fixture(
+        `<anypoint-button disabled>Button</anypoint-button>`
+      );
       await assert.isAccessible(element);
     });
   });
@@ -89,7 +95,7 @@ describe('<anypoint-button>', function() {
       assert.equal(element.elevation, 2);
     });
 
-    it('pressed and released', async function() {
+    it('pressed and released', async () => {
       MockInteractions.down(element);
       await nextFrame();
       assert.equal(element.elevation, 3);
@@ -114,15 +120,15 @@ describe('<anypoint-button>', function() {
     });
   });
 
-  describe('A button with toggles', function() {
+  describe('A button with toggles', () => {
     let element;
     beforeEach(async () => {
       element = await togglesFixture();
       element.emphasis = 'high';
     });
 
-    it('activated by click', function(done) {
-      MockInteractions.downAndUp(element, function() {
+    it('activated by click', done => {
+      MockInteractions.downAndUp(element, () => {
         setTimeout(() => {
           try {
             assert.equal(element.elevation, 2);
@@ -141,7 +147,7 @@ describe('<anypoint-button>', function() {
     });
   });
 
-  describe('Ripple effect', function() {
+  describe('Ripple effect', () => {
     let element;
 
     it('Riple has noink set', async () => {
@@ -155,7 +161,7 @@ describe('<anypoint-button>', function() {
     it('Resetting noink shows ripple', async () => {
       element = await noinkFixture();
       element.noink = false;
-      await aTimeout();
+      await aTimeout(0);
       element.noink = true;
       const ripple = element.shadowRoot.querySelector('paper-ripple');
       assert.isFalse(ripple.noink);
@@ -188,7 +194,7 @@ describe('<anypoint-button>', function() {
       assert.isTrue(spy.calledOnce, 'Function called');
     });
 
-    it('Won\'t call uiDownAction() on ripple when animating', () => {
+    it("Won't call uiDownAction() on ripple when animating", () => {
       element._spaceKeyDownHandler(new CustomEvent('keydown'));
       const spy = sinon.spy(element._ripple, 'uiDownAction');
       element._spaceKeyDownHandler(new CustomEvent('keydown'));

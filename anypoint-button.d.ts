@@ -12,3 +12,10 @@
 // tslint:disable:variable-name Describing an API that's defined elsewhere.
 
 import {AnypointButton} from './src/AnypointButton.js';
+
+declare global {
+
+  interface HTMLElementTagNameMap {
+    "anypoint-button": AnypointButton;
+  }
+}

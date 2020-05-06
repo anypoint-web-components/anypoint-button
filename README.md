@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.org/anypoint-web-components/anypoint-button.svg?branch=master)](https://travis-ci.org/anypoint-web-components/anypoint-button)
+[![Build Status](https://travis-ci.com/anypoint-web-components/anypoint-button.svg)](https://travis-ci.org/anypoint-web-components/anypoint-button)
 
 [![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/anypoint-button.svg)](https://www.npmjs.com/package/@anypoint-web-components/anypoint-button)
 
 # anypoint-button
 
-Anypoint styled button.
+Anypoint and Material Design styled button.
 
 Anypoint button by default is styled for Anypoint platform. Styles can be controlled by using `emphasis` property ans CSS variables.
 
@@ -17,14 +17,15 @@ High emphasis should be used for primary action, not very often, ideally one per
 
 ### Installation
 ```
-npm install --save @anypoint-web-components/anypoint-button
+npm install @anypoint-web-components/anypoint-button --save
 ```
 
 ### In a HTML document
 
 ```html
-<script type="module" src="node_modules/@anypoint-web-components/anypoint-button/anypoint-button.js"></script>
-<script type="module" src="node_modules/@anypoint-web-components/anypoint-button/anypoint-icon-button.js"></script>
+<script type="module" src="@anypoint-web-components/anypoint-button/anypoint-button.js"></script>
+<script type="module" src="@anypoint-web-components/anypoint-button/anypoint-icon-button.js"></script>
+
 <anypoint-button emphasis="low">Low emphasis</anypoint-button>
 <anypoint-button emphasis="medium">Medium emphasis</anypoint-button>
 <anypoint-button emphasis="high">High emphasis</anypoint-button>
@@ -32,9 +33,7 @@ npm install --save @anypoint-web-components/anypoint-button
 <anypoint-button disabled>You can't click me</anypoint-button>
 
 <anypoint-icon-button emphasis="low">
-  <button title="Add alarm">
-    <iron-icon icon="alarm-add"></iron-icon>
-  </button>
+  <my-icon icon="alarm-add"></my-icon>
 </anypoint-icon-button>
 ```
 
@@ -45,7 +44,7 @@ import { LitElement, html } from 'lit-element';
 import '@anypoint-web-components/anypoint-button/anypoint-button.js';
 import '@anypoint-web-components/anypoint-button/anypoint-icon-button.js';
 
-class SimpleElement extends ControlStateMixin(ButtonStateMixin(LitElement)) {
+class SimpleElement extends LitElement {
   render() {
     return html`
     <anypoint-button emphasis="low">Low emphasis</anypoint-button>
@@ -55,9 +54,7 @@ class SimpleElement extends ControlStateMixin(ButtonStateMixin(LitElement)) {
     <anypoint-button disabled>You can't click me</anypoint-button>
 
     <anypoint-icon-button emphasis="low">
-      <button title="Add alarm">
-        <iron-icon icon="alarm-add"></iron-icon>
-      </button>
+      <my-icon icon="alarm-add"></my-icon>
     </anypoint-icon-button>
     `;
   }
