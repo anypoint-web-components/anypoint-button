@@ -10,9 +10,7 @@ import elementStyles from './IconStyles.js';
  * @param {KeyboardEvent} e
  * @return {Boolean} True if the event was triggered by the Enter key.
  */
-const isEnterKey = e => {
-  return e.code === 'Enter' || e.code === 'NumpadEnter' || e.keyCode === 13;
-};
+const isEnterKey = e => e.code === 'Enter' || e.code === 'NumpadEnter' || e.keyCode === 13;
 
 /**
  * `anypoint-button`
@@ -34,17 +32,15 @@ export class AnypointIconButton extends AnypointButtonBase {
   }
 
   render() {
-    return html`<style>
-        ${this.styles}
-      </style>
-      <div class="icon">
-        <slot></slot>
-        <paper-ripple
-          class="circle"
-          center
-          .noink="${this.noink}"
-        ></paper-ripple>
-      </div> `;
+    return html`<style>${this.styles}</style>
+    <div class="icon">
+      <slot></slot>
+      <paper-ripple
+        class="circle"
+        center
+        .noink="${this.noink}"
+      ></paper-ripple>
+    </div> `;
   }
 
   connectedCallback() {
