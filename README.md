@@ -1,7 +1,3 @@
-[![Build Status](https://travis-ci.com/anypoint-web-components/anypoint-button.svg)](https://travis-ci.com/anypoint-web-components/anypoint-button)
-
-[![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/anypoint-button.svg)](https://www.npmjs.com/package/@anypoint-web-components/anypoint-button)
-
 # anypoint-button
 
 Anypoint and Material Design styled button.
@@ -13,10 +9,16 @@ Low emphasis button should be used for less important actions.
 Medium emphasis should be used for secondary actions.
 High emphasis should be used for primary action, not very often, ideally one per screen.
 
+[![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/anypoint-button.svg)](https://www.npmjs.com/package/@anypoint-web-components/anypoint-button)
+
+
+[![tests](https://github.com/anypoint-web-components/anypoint-button/actions/workflows/deployment.yml/badge.svg)](https://github.com/anypoint-web-components/anypoint-button/actions/workflows/deployment.yml)
+
 ## Usage
 
 ### Installation
-```
+
+```sh
 npm install @anypoint-web-components/anypoint-button --save
 ```
 
@@ -77,6 +79,7 @@ npm start
 ```
 
 ### Running the tests
+
 ```sh
 npm test
 ```
