@@ -1,7 +1,5 @@
 import { LitElement } from 'lit-element';
-// import { ButtonStateMixin, ControlStateMixin } from '@anypoint-web-components/anypoint-control-mixins/index.js';
-import { ControlStateMixin } from '@anypoint-web-components/anypoint-control-mixins/src/ControlStateMixin.js';
-import { ButtonStateMixin } from '@anypoint-web-components/anypoint-control-mixins/src/ButtonStateMixin.js';
+import { ControlStateMixin, ButtonStateMixin } from '@anypoint-web-components/anypoint-control-mixins';
 import '@polymer/paper-ripple/paper-ripple.js';
 
 /**
@@ -9,9 +7,7 @@ import '@polymer/paper-ripple/paper-ripple.js';
  * Use this class to create buttons that can be elevated (Material Design) and has
  * compatibility layer with the Anypoint platform.
  */
-export class AnypointButtonBase extends ControlStateMixin(
-  ButtonStateMixin(LitElement)
-) {
+export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitElement)) {
   static get properties() {
     return {
       /**
@@ -104,8 +100,8 @@ export class AnypointButtonBase extends ControlStateMixin(
 
   /**
    * Computes current elevation for the material design.
-   * The `emphasis` property is set when the updates are commited.
-   * @return {Promise}
+   * The `emphasis` property is set when the updates are committed.
+   * @returns {Promise<void>}
    */
   async _calculateElevation() {
     let e = 0;

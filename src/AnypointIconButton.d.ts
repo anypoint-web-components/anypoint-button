@@ -11,7 +11,7 @@ declare class AnypointIconButton extends AnypointButtonBase {
   /**
    * A reference to the PaperRippleElement in the local DOM.
    */
-  readonly _ripple: PaperRippleElement;
+  get _ripple(): PaperRippleElement;
   constructor();
   render(): TemplateResult;
   connectedCallback(): void;

@@ -1,0 +1,325 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "anypoint-button",
+      "path": "./anypoint-button.js",
+      "description": "Material design and Anypoint styled button.",
+      "attributes": [
+        {
+          "name": "elevation",
+          "description": "The z-depth of this element, from 0-5. Setting to 0 will remove the\nshadow, and each increasing number greater than 0 will be \"deeper\"\nthan the last.\nThis is for MD implementation.",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "emphasis",
+          "description": "Button emphasis in the UI.\n\nPossible values:\n- `low` - Text buttons are typically used for less important actions.\n- `medium` - Outlined buttons are used for more emphasis than text buttons due to the stroke.\n- `high` - Contained buttons have more emphasis, as they use use a color fill and shadow.\n\nDefault is \"low\".",
+          "type": "\"low\" | \"medium\" | \"high\" | undefined"
+        },
+        {
+          "name": "noink",
+          "description": "When set ripple effect is not rendered.",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "compatibility",
+          "description": "Enables compatibility with Anypoint components.",
+          "type": "boolean"
+        },
+        {
+          "name": "disabled",
+          "description": "If true the button is a toggle and is currently in the active state.",
+          "type": "boolean"
+        },
+        {
+          "name": "focused",
+          "description": "If true the element currently has focus.",
+          "type": "boolean"
+        },
+        {
+          "name": "toggles",
+          "description": "If true, the button toggles the active state with each click or press\nof the space bar.",
+          "type": "boolean"
+        },
+        {
+          "name": "active",
+          "description": "If true, the button is a toggle and is currently in the active state.",
+          "type": "boolean"
+        },
+        {
+          "name": "pressed",
+          "description": "True when the element is currently being pressed as\nthe user is holding down the button on the element.",
+          "type": "boolean"
+        },
+        {
+          "name": "ariaActiveAttribute",
+          "description": "The aria attribute to be set if the button is a toggle and in the\nactive state.",
+          "type": "string"
+        }
+      ],
+      "properties": [
+        {
+          "name": "elevation",
+          "attribute": "elevation",
+          "description": "The z-depth of this element, from 0-5. Setting to 0 will remove the\nshadow, and each increasing number greater than 0 will be \"deeper\"\nthan the last.\nThis is for MD implementation.",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "emphasis",
+          "attribute": "emphasis",
+          "description": "Button emphasis in the UI.\n\nPossible values:\n- `low` - Text buttons are typically used for less important actions.\n- `medium` - Outlined buttons are used for more emphasis than text buttons due to the stroke.\n- `high` - Contained buttons have more emphasis, as they use use a color fill and shadow.\n\nDefault is \"low\".",
+          "type": "\"low\" | \"medium\" | \"high\" | undefined"
+        },
+        {
+          "name": "noink",
+          "attribute": "noink",
+          "description": "When set ripple effect is not rendered.",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "legacy",
+          "type": "boolean",
+          "deprecatedMessage": "Use legacy instead."
+        },
+        {
+          "name": "compatibility",
+          "attribute": "compatibility",
+          "description": "Enables compatibility with Anypoint components.",
+          "type": "boolean"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "description": "If true the button is a toggle and is currently in the active state.",
+          "type": "boolean"
+        },
+        {
+          "name": "focused",
+          "attribute": "focused",
+          "description": "If true the element currently has focus.",
+          "type": "boolean"
+        },
+        {
+          "name": "toggles",
+          "attribute": "toggles",
+          "description": "If true, the button toggles the active state with each click or press\nof the space bar.",
+          "type": "boolean"
+        },
+        {
+          "name": "active",
+          "attribute": "active",
+          "description": "If true, the button is a toggle and is currently in the active state.",
+          "type": "boolean"
+        },
+        {
+          "name": "pressed",
+          "attribute": "pressed",
+          "description": "True when the element is currently being pressed as\nthe user is holding down the button on the element.",
+          "type": "boolean"
+        },
+        {
+          "name": "pointerDown",
+          "description": "True when the a pointer device is currently pointing on the element\nand is in \"down\" state.",
+          "type": "boolean"
+        },
+        {
+          "name": "receivedFocusFromKeyboard",
+          "description": "True when the element received focus from the keyboard.",
+          "type": "boolean"
+        },
+        {
+          "name": "ariaActiveAttribute",
+          "attribute": "ariaActiveAttribute",
+          "description": "The aria attribute to be set if the button is a toggle and in the\nactive state.",
+          "type": "string"
+        }
+      ],
+      "events": [
+        {
+          "name": "focusedchange",
+          "description": "When the `focused` property has changed"
+        },
+        {
+          "name": "disabledchange",
+          "description": "When the `disabled` property has changed"
+        },
+        {
+          "name": "pressedchange",
+          "description": "When the `pressed` property has changed"
+        },
+        {
+          "name": "activechange",
+          "description": "When the `active` property has changed"
+        },
+        {
+          "name": "pressed-changed",
+          "description": "This event is deprecated"
+        },
+        {
+          "name": "active-changed",
+          "description": "This event is deprecated"
+        }
+      ]
+    },
+    {
+      "name": "anypoint-icon-button",
+      "path": "./anypoint-icon-button.js",
+      "description": "Material design and Anypoint styled icon button",
+      "attributes": [
+        {
+          "name": "elevation",
+          "description": "The z-depth of this element, from 0-5. Setting to 0 will remove the\nshadow, and each increasing number greater than 0 will be \"deeper\"\nthan the last.\nThis is for MD implementation.",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "emphasis",
+          "description": "Button emphasis in the UI.\n\nPossible values:\n- `low` - Text buttons are typically used for less important actions.\n- `medium` - Outlined buttons are used for more emphasis than text buttons due to the stroke.\n- `high` - Contained buttons have more emphasis, as they use use a color fill and shadow.\n\nDefault is \"low\".",
+          "type": "\"low\" | \"medium\" | \"high\" | undefined"
+        },
+        {
+          "name": "noink",
+          "description": "When set ripple effect is not rendered.",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "compatibility",
+          "description": "Enables compatibility with Anypoint components.",
+          "type": "boolean"
+        },
+        {
+          "name": "disabled",
+          "description": "If true the button is a toggle and is currently in the active state.",
+          "type": "boolean"
+        },
+        {
+          "name": "focused",
+          "description": "If true the element currently has focus.",
+          "type": "boolean"
+        },
+        {
+          "name": "toggles",
+          "description": "If true, the button toggles the active state with each click or press\nof the space bar.",
+          "type": "boolean"
+        },
+        {
+          "name": "active",
+          "description": "If true, the button is a toggle and is currently in the active state.",
+          "type": "boolean"
+        },
+        {
+          "name": "pressed",
+          "description": "True when the element is currently being pressed as\nthe user is holding down the button on the element.",
+          "type": "boolean"
+        },
+        {
+          "name": "ariaActiveAttribute",
+          "description": "The aria attribute to be set if the button is a toggle and in the\nactive state.",
+          "type": "string"
+        }
+      ],
+      "properties": [
+        {
+          "name": "elevation",
+          "attribute": "elevation",
+          "description": "The z-depth of this element, from 0-5. Setting to 0 will remove the\nshadow, and each increasing number greater than 0 will be \"deeper\"\nthan the last.\nThis is for MD implementation.",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "emphasis",
+          "attribute": "emphasis",
+          "description": "Button emphasis in the UI.\n\nPossible values:\n- `low` - Text buttons are typically used for less important actions.\n- `medium` - Outlined buttons are used for more emphasis than text buttons due to the stroke.\n- `high` - Contained buttons have more emphasis, as they use use a color fill and shadow.\n\nDefault is \"low\".",
+          "type": "\"low\" | \"medium\" | \"high\" | undefined"
+        },
+        {
+          "name": "noink",
+          "attribute": "noink",
+          "description": "When set ripple effect is not rendered.",
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "legacy",
+          "type": "boolean",
+          "deprecatedMessage": "Use legacy instead."
+        },
+        {
+          "name": "compatibility",
+          "attribute": "compatibility",
+          "description": "Enables compatibility with Anypoint components.",
+          "type": "boolean"
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "description": "If true the button is a toggle and is currently in the active state.",
+          "type": "boolean"
+        },
+        {
+          "name": "focused",
+          "attribute": "focused",
+          "description": "If true the element currently has focus.",
+          "type": "boolean"
+        },
+        {
+          "name": "toggles",
+          "attribute": "toggles",
+          "description": "If true, the button toggles the active state with each click or press\nof the space bar.",
+          "type": "boolean"
+        },
+        {
+          "name": "active",
+          "attribute": "active",
+          "description": "If true, the button is a toggle and is currently in the active state.",
+          "type": "boolean"
+        },
+        {
+          "name": "pressed",
+          "attribute": "pressed",
+          "description": "True when the element is currently being pressed as\nthe user is holding down the button on the element.",
+          "type": "boolean"
+        },
+        {
+          "name": "pointerDown",
+          "description": "True when the a pointer device is currently pointing on the element\nand is in \"down\" state.",
+          "type": "boolean"
+        },
+        {
+          "name": "receivedFocusFromKeyboard",
+          "description": "True when the element received focus from the keyboard.",
+          "type": "boolean"
+        },
+        {
+          "name": "ariaActiveAttribute",
+          "attribute": "ariaActiveAttribute",
+          "description": "The aria attribute to be set if the button is a toggle and in the\nactive state.",
+          "type": "string"
+        }
+      ],
+      "events": [
+        {
+          "name": "focusedchange",
+          "description": "When the `focused` property has changed"
+        },
+        {
+          "name": "disabledchange",
+          "description": "When the `disabled` property has changed"
+        },
+        {
+          "name": "pressedchange",
+          "description": "When the `pressed` property has changed"
+        },
+        {
+          "name": "activechange",
+          "description": "When the `active` property has changed"
+        },
+        {
+          "name": "pressed-changed",
+          "description": "This event is deprecated"
+        },
+        {
+          "name": "active-changed",
+          "description": "This event is deprecated"
+        }
+      ]
+    }
+  ]
+}
