@@ -1,19 +1,27 @@
-import { fixture, assert } from '@open-wc/testing';
-import * as sinon from 'sinon';
+import { fixture, assert, html } from '@open-wc/testing';
+import sinon from 'sinon';
 import '../anypoint-icon-button.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-icons/iron-icons.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 
+/** @typedef {import('..').AnypointIconButton} AnypointIconButton */
+
 describe('<anypoint-icon-button>', () => {
+  /**
+   * @returns {Promise<AnypointIconButton>} 
+   */
   async function basicFixture() {
-    return fixture(`<anypoint-icon-button>
+    return fixture(html`<anypoint-icon-button>
         <iron-icon icon="alarm-add"></iron-icon>
     </anypoint-icon-button>`);
   }
 
+  /**
+   * @returns {Promise<AnypointIconButton>} 
+   */
   async function noinkFixture() {
-    return fixture(`<anypoint-icon-button noink>
+    return fixture(html`<anypoint-icon-button noink>
         <iron-icon icon="alarm-add"></iron-icon>
     </anypoint-icon-button>`);
   }
@@ -21,7 +29,7 @@ describe('<anypoint-icon-button>', () => {
   describe('Basics', () => {
     it('returns _ripple', async () => {
       const element = await basicFixture();
-      assert.equal(element._ripple.localName, 'paper-ripple');
+      assert.equal(element._ripple.localName, 'material-ripple');
     });
 
     it('noink property is passed to the ripple', async () => {
@@ -93,9 +101,8 @@ describe('<anypoint-icon-button>', () => {
       assert.isTrue(spy.called, 'Function called');
     });
 
-    it('calls uiDownAction() on the ripple', () => {
-      const spy = sinon.spy(element._ripple, 'uiDownAction');
-      element._ripple.animating = true;
+    it('calls down() on the ripple', () => {
+      const spy = sinon.spy(element._ripple, 'down');
       element._enterDownHandler();
       assert.isTrue(spy.called, 'Function called');
     });
@@ -106,7 +113,7 @@ describe('<anypoint-icon-button>', () => {
       assert.isTrue(spy.called, 'Function called');
     });
 
-    it('is called from numenter down event', () => {
+    it('is called from num enter down event', () => {
       const spy = sinon.spy(element, '_enterDownHandler');
       MockInteractions.keyDownOn(element, 13, [], 'NumpadEnter');
       assert.isTrue(spy.called, 'Function called');
@@ -131,8 +138,8 @@ describe('<anypoint-icon-button>', () => {
       assert.isTrue(spy.called, 'Function called');
     });
 
-    it('calls uiUpAction() on the ripple', () => {
-      const spy = sinon.spy(element._ripple, 'uiUpAction');
+    it('calls up() on the ripple', () => {
+      const spy = sinon.spy(element._ripple, 'up');
       element._enterUpHandler();
       assert.isTrue(spy.called, 'Function called');
     });
@@ -143,7 +150,7 @@ describe('<anypoint-icon-button>', () => {
       assert.isTrue(spy.called, 'Function called');
     });
 
-    it('is called from numenter down event', () => {
+    it('is called from num enter down event', () => {
       const spy = sinon.spy(element, '_enterUpHandler');
       MockInteractions.keyUpOn(element, 13, [], 'NumpadEnter');
       assert.isTrue(spy.called, 'Function called');

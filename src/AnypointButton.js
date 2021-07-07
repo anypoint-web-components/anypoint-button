@@ -1,9 +1,9 @@
 import { html } from 'lit-element';
-import '@polymer/paper-ripple/paper-ripple.js';
+import '@anypoint-web-components/material-ripple/material-ripple.js';
 import { AnypointButtonBase } from './AnypointButtonBase.js';
 import elementStyles from './Styles.js';
 
-/** @typedef {import('@polymer/paper-ripple').PaperRippleElement} PaperRippleElement */
+/** @typedef {import('@anypoint-web-components/material-ripple').MaterialRippleElement} MaterialRippleElement */
 
 /**
  * `anypoint-button`
@@ -20,16 +20,14 @@ export class AnypointButton extends AnypointButtonBase {
   render() {
     const { noink, compatibility, styles } = this;
     const stopRipple = !!noink || !!compatibility;
-    return html`<style>
-        ${styles}</style
-      ><slot></slot><paper-ripple .noink="${stopRipple}"></paper-ripple>`;
+    return html`<style>${styles}</style><slot></slot><material-ripple .noink="${stopRipple}"></material-ripple>`;
   }
 
   /**
-   * @return {PaperRippleElement} A reference to the PaperRippleElement in the local DOM.
+   * @return {MaterialRippleElement} A reference to the PaperRippleElement in the local DOM.
    */
   get _ripple() {
-    return this.shadowRoot.querySelector('paper-ripple');
+    return this.shadowRoot.querySelector('material-ripple');
   }
 
   connectedCallback() {
@@ -49,13 +47,13 @@ export class AnypointButton extends AnypointButtonBase {
     this._calculateElevation();
     const { _ripple } = this;
     if (!_ripple.animating) {
-      _ripple.uiDownAction();
+      _ripple.down();
     }
   }
 
   _spaceKeyUpHandler(e) {
     super._spaceKeyUpHandler(e);
     this._calculateElevation();
-    this._ripple.uiUpAction();
+    this._ripple.up();
   }
 }

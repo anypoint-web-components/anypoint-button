@@ -3,29 +3,49 @@ import * as sinon from 'sinon';
 import '../anypoint-button.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 
+/** @typedef {import('..').AnypointButton} AnypointButton */
+
 describe('<anypoint-button>', () => {
+  /**
+   * @returns {Promise<AnypointButton>} 
+   */
   async function basicFixture() {
     return fixture(`<anypoint-button>Button</anypoint-button>`);
   }
 
+  /**
+   * @returns {Promise<AnypointButton>} 
+   */
   async function roleFixture() {
     return fixture(
       `<anypoint-button role="radiobutton">Button</anypoint-button>`
     );
   }
 
+  /**
+   * @returns {Promise<AnypointButton>} 
+   */
   async function tabindexFixture() {
     return fixture(`<anypoint-button tabindex="-1">Button</anypoint-button>`);
   }
 
+  /**
+   * @returns {Promise<AnypointButton>} 
+   */
   async function togglesFixture() {
     return fixture(`<anypoint-button toggles>Button</anypoint-button>`);
   }
 
+  /**
+   * @returns {Promise<AnypointButton>} 
+   */
   async function noinkFixture() {
     return fixture(`<anypoint-button noink>Button</anypoint-button>`);
   }
 
+  /**
+   * @returns {Promise<AnypointButton>} 
+   */
   async function highEmphasisFixture() {
     return fixture(`<anypoint-button emphasis="high">Button</anypoint-button>`);
   }
@@ -150,11 +170,11 @@ describe('<anypoint-button>', () => {
   describe('Ripple effect', () => {
     let element;
 
-    it('Riple has noink set', async () => {
+    it('Ripple has noink set', async () => {
       element = await noinkFixture();
       MockInteractions.down(element);
       MockInteractions.up(element);
-      const ripple = element.shadowRoot.querySelector('paper-ripple');
+      const ripple = element.shadowRoot.querySelector('material-ripple');
       assert.isTrue(ripple.noink);
     });
 
@@ -163,7 +183,7 @@ describe('<anypoint-button>', () => {
       element.noink = false;
       await aTimeout(0);
       element.noink = true;
-      const ripple = element.shadowRoot.querySelector('paper-ripple');
+      const ripple = element.shadowRoot.querySelector('material-ripple');
       assert.isFalse(ripple.noink);
     });
 
@@ -171,7 +191,7 @@ describe('<anypoint-button>', () => {
       element = await highEmphasisFixture();
       MockInteractions.pressSpace(element);
       await aTimeout(40);
-      const ripple = element.shadowRoot.querySelector('paper-ripple');
+      const ripple = element.shadowRoot.querySelector('material-ripple');
       assert.ok(ripple);
     });
   });
@@ -188,15 +208,15 @@ describe('<anypoint-button>', () => {
       assert.isTrue(spy.calledOnce, 'Function called');
     });
 
-    it('Calls uiDownAction() on ripple effect', () => {
-      const spy = sinon.spy(element._ripple, 'uiDownAction');
+    it('Calls down() on ripple effect', () => {
+      const spy = sinon.spy(element._ripple, 'down');
       element._spaceKeyDownHandler(new CustomEvent('keydown'));
       assert.isTrue(spy.calledOnce, 'Function called');
     });
 
-    it("Won't call uiDownAction() on ripple when animating", () => {
+    it("Won't call down() on ripple when animating", () => {
       element._spaceKeyDownHandler(new CustomEvent('keydown'));
-      const spy = sinon.spy(element._ripple, 'uiDownAction');
+      const spy = sinon.spy(element._ripple, 'down');
       element._spaceKeyDownHandler(new CustomEvent('keydown'));
       assert.isFalse(spy.called, 'Function called');
     });
@@ -214,8 +234,8 @@ describe('<anypoint-button>', () => {
       assert.isTrue(spy.calledOnce, 'Function called');
     });
 
-    it('Calls uiUpAction() on ripple effect', () => {
-      const spy = sinon.spy(element._ripple, 'uiUpAction');
+    it('Calls up() on ripple effect', () => {
+      const spy = sinon.spy(element._ripple, 'up');
       element._spaceKeyUpHandler(new CustomEvent('keyup'));
       assert.isTrue(spy.calledOnce, 'Function called');
     });

@@ -155,7 +155,7 @@ export default css`
   text-transform: var(--anypoint-button-text-transform, initial);
 }
 
-:host([compatibility]) paper-ripple {
+:host([compatibility]) material-ripple {
   display: none;
 }
 
