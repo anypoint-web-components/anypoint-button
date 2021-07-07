@@ -1,5 +1,5 @@
 import { TemplateResult } from 'lit-element';
-import {PaperRippleElement} from '@polymer/paper-ripple';
+import {MaterialRippleElement} from '@anypoint-web-components/material-ripple';
 import {AnypointButtonBase} from './AnypointButtonBase.js';
 
 export {AnypointIconButton};
@@ -9,9 +9,9 @@ export {AnypointIconButton};
  */
 declare class AnypointIconButton extends AnypointButtonBase {
   /**
-   * A reference to the PaperRippleElement in the local DOM.
+   * A reference to the MaterialRippleElement in the local DOM.
    */
-  get _ripple(): PaperRippleElement;
+  get _ripple(): MaterialRippleElement;
   constructor();
   render(): TemplateResult;
   connectedCallback(): void;

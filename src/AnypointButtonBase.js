@@ -1,6 +1,6 @@
 import { LitElement } from 'lit-element';
 import { ControlStateMixin, ButtonStateMixin } from '@anypoint-web-components/anypoint-control-mixins';
-import '@polymer/paper-ripple/paper-ripple.js';
+import '@anypoint-web-components/material-ripple/material-ripple.js';
 
 /**
  * A base class for Anypoint buttons.

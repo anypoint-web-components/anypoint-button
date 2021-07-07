@@ -1,9 +1,9 @@
 import { html } from 'lit-element';
 import { AnypointButtonBase } from './AnypointButtonBase.js';
-import '@polymer/paper-ripple/paper-ripple.js';
+import '@anypoint-web-components/material-ripple/material-ripple.js';
 import elementStyles from './IconStyles.js';
 
-/** @typedef {import('@polymer/paper-ripple').PaperRippleElement} PaperRippleElement */
+/** @typedef {import('@anypoint-web-components/material-ripple').MaterialRippleElement} MaterialRippleElement */
 
 /**
  * Checks whether a KeyboardEvent originates from any Enter keys.
@@ -25,21 +25,21 @@ export class AnypointIconButton extends AnypointButtonBase {
   }
 
   /**
-   * @return {PaperRippleElement} A reference to the PaperRippleElement in the local DOM.
+   * @return {MaterialRippleElement} A reference to the PaperRippleElement in the local DOM.
    */
   get _ripple() {
-    return this.shadowRoot.querySelector('paper-ripple');
+    return this.shadowRoot.querySelector('material-ripple');
   }
 
   render() {
     return html`<style>${this.styles}</style>
     <div class="icon">
       <slot></slot>
-      <paper-ripple
+      <material-ripple
         class="circle"
         center
         .noink="${this.noink}"
-      ></paper-ripple>
+      ></material-ripple>
     </div> `;
   }
 
@@ -87,17 +87,16 @@ export class AnypointIconButton extends AnypointButtonBase {
     }
   }
 
-  /** @override */
   _enterDownHandler() {
     this._calculateElevation();
     const { _ripple } = this;
     if (!_ripple.animating) {
-      _ripple.uiDownAction();
+      _ripple.down();
     }
   }
 
   _enterUpHandler() {
     this._calculateElevation();
-    this._ripple.uiUpAction();
+    this._ripple.up();
   }
 }

@@ -8,7 +8,7 @@ export default css`:host {
   outline: none;
 }
 
-paper-ripple {
+material-ripple {
   opacity: 0.6;
   color: currentColor;
 }
