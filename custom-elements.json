@@ -136,6 +136,10 @@
       ],
       "events": [
         {
+          "name": "transitionend",
+          "description": "Above the standard HTML behavior, it is dispatched when ripple finish animation."
+        },
+        {
           "name": "focusedchange",
           "description": "When the `focused` property has changed"
         },

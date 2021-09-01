@@ -6,6 +6,7 @@ export {AnypointIconButton};
 
 /**
  * Material design and Anypoint styled icon button
+ * @fires transitionend Above the standard HTML behavior, it is dispatched when ripple finish animation.
  */
 declare class AnypointIconButton extends AnypointButtonBase {
   /**

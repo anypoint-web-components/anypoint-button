@@ -1,4 +1,4 @@
-import { fixture, assert, aTimeout, nextFrame } from '@open-wc/testing';
+import { fixture, assert, aTimeout, nextFrame, html, oneEvent } from '@open-wc/testing';
 import * as sinon from 'sinon';
 import '../anypoint-button.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
@@ -10,7 +10,7 @@ describe('<anypoint-button>', () => {
    * @returns {Promise<AnypointButton>} 
    */
   async function basicFixture() {
-    return fixture(`<anypoint-button>Button</anypoint-button>`);
+    return fixture(html`<anypoint-button>Button</anypoint-button>`);
   }
 
   /**
@@ -18,7 +18,7 @@ describe('<anypoint-button>', () => {
    */
   async function roleFixture() {
     return fixture(
-      `<anypoint-button role="radiobutton">Button</anypoint-button>`
+      html`<anypoint-button role="link">Button</anypoint-button>`
     );
   }
 
@@ -26,28 +26,28 @@ describe('<anypoint-button>', () => {
    * @returns {Promise<AnypointButton>} 
    */
   async function tabindexFixture() {
-    return fixture(`<anypoint-button tabindex="-1">Button</anypoint-button>`);
+    return fixture(html`<anypoint-button tabindex="-1">Button</anypoint-button>`);
   }
 
   /**
    * @returns {Promise<AnypointButton>} 
    */
   async function togglesFixture() {
-    return fixture(`<anypoint-button toggles>Button</anypoint-button>`);
+    return fixture(html`<anypoint-button toggles>Button</anypoint-button>`);
   }
 
   /**
    * @returns {Promise<AnypointButton>} 
    */
   async function noinkFixture() {
-    return fixture(`<anypoint-button noink>Button</anypoint-button>`);
+    return fixture(html`<anypoint-button noink>Button</anypoint-button>`);
   }
 
   /**
    * @returns {Promise<AnypointButton>} 
    */
   async function highEmphasisFixture() {
-    return fixture(`<anypoint-button emphasis="high">Button</anypoint-button>`);
+    return fixture(html`<anypoint-button emphasis="high">Button</anypoint-button>`);
   }
 
   describe('a11y', () => {
@@ -58,7 +58,7 @@ describe('<anypoint-button>', () => {
 
     it('Respects existing role', async () => {
       const element = await roleFixture();
-      assert.equal(element.getAttribute('role'), 'radiobutton');
+      assert.equal(element.getAttribute('role'), 'link');
     });
 
     it('Has tabindex set', async () => {
@@ -168,6 +168,7 @@ describe('<anypoint-button>', () => {
   });
 
   describe('Ripple effect', () => {
+    /** @type AnypointButton */
     let element;
 
     it('Ripple has noink set', async () => {
@@ -193,6 +194,13 @@ describe('<anypoint-button>', () => {
       await aTimeout(40);
       const ripple = element.shadowRoot.querySelector('material-ripple');
       assert.ok(ripple);
+    });
+
+    it('dispatched transitionend event on ripple end', async () => {
+      element = await basicFixture();
+      MockInteractions.pressSpace(element);
+      const e = /** @type TransitionEvent */ (/** @type unknown */ (await oneEvent(element, 'transitionend')));
+      assert.isUndefined(e.propertyName);
     });
   });
 

@@ -1,7 +1,7 @@
 {
   "name": "@anypoint-web-components/anypoint-button",
   "description": "Anypoint styled button.",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "license": "Apache-2.0",
   "main": "index.js",
   "module": "index.js",
@@ -27,28 +27,28 @@
   },
   "dependencies": {
     "@anypoint-web-components/anypoint-control-mixins": "^1.2.0",
-    "@anypoint-web-components/material-ripple": "^1.0.1",
+    "@anypoint-web-components/material-ripple": "^1.0.2",
     "lit-element": "^2.5.1"
   },
   "devDependencies": {
     "@advanced-rest-client/arc-demo-helper": "^1.0.17",
-    "@anypoint-web-components/anypoint-checkbox": "^1.2.1",
+    "@anypoint-web-components/anypoint-checkbox": "^1.2.2",
     "@anypoint-web-components/anypoint-icons": "^1.0.1",
-    "@anypoint-web-components/anypoint-styles": "^1.0.1",
+    "@anypoint-web-components/anypoint-styles": "^1.0.2",
     "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/testing": "^2.5.33",
     "@polymer/iron-icon": "^3.0.1",
     "@polymer/iron-icons": "^3.0.1",
     "@polymer/iron-test-helpers": "^3.0.1",
-    "@web/dev-server": "^0.1.18",
-    "@web/test-runner": "^0.13.13",
-    "@web/test-runner-playwright": "^0.8.6",
-    "eslint": "^7.30.0",
+    "@web/dev-server": "^0.1.22",
+    "@web/test-runner": "^0.13.17",
+    "@web/test-runner-playwright": "^0.8.8",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "husky": "^7.0.1",
-    "lint-staged": "^11.0.0",
-    "sinon": "^11.1.1",
-    "typescript": "^4.3.5",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
+    "sinon": "^11.1.2",
+    "typescript": "^4.4.2",
     "typescript-lit-html-plugin": "^0.9.0"
   },
   "scripts": {
@@ -66,6 +66,23 @@
     "extends": [
       "@open-wc/eslint-config",
       "eslint-config-prettier"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "demo/**/*.js",
+          "test/**/*.js",
+          "**/demo/**/*.html"
+        ],
+        "rules": {
+          "no-console": "off",
+          "no-unused-expressions": "off",
+          "no-plusplus": "off",
+          "no-param-reassing": "off",
+          "class-methods-use-this": "off",
+          "import/no-extraneous-dependencies": "off"
+        }
+      }
     ]
   },
   "husky": {
@@ -77,5 +94,11 @@
     "*.js": [
       "eslint --fix"
     ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "always",
+    "printWidth": 240,
+    "trailingComma": "all"
   }
 }

@@ -4,6 +4,7 @@ import { AnypointButtonBase } from './AnypointButtonBase.js';
 
 /**
  * Material design and Anypoint styled button.
+ * @fires transitionend Above the standard HTML behavior, it is dispatched when ripple finish animation.
  */
 export declare class AnypointButton extends AnypointButtonBase {
   /**

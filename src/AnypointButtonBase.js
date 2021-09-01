@@ -126,4 +126,21 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
   _buttonStateChanged() {
     this._calculateElevation();
   }
+
+  /**
+   * Redirects the `transitionend` from the `material-ripple` element.
+   * This is the only way to perform an action when the animation ends instead of counting on `click`.
+   * Note, when compatibility is enabled this event is not dispatched.
+   * 
+   * @param {TransitionEvent} e 
+   */
+  _transitionEndHandler(e) {
+    const { propertyName } = e;
+    if (propertyName !== undefined) {
+      // the material-ripple dispatches `transitionend` as a custom event
+      // which has no propertyName on it.
+      return;
+    }
+    this.dispatchEvent(new Event('transitionend'));
+  }
 }

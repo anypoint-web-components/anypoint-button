@@ -54,4 +54,10 @@ export declare class AnypointButtonBase  extends ControlStateMixin(ButtonStateMi
   _calculateElevation(): Promise<void>;
   _controlStateChanged(): void;
   _buttonStateChanged(): void;
+  /**
+   * Redirects the `transitionend` from the `material-ripple` element.
+   * This is the only way to perform an action when the animation ends instead of counting on `click`.
+   * Note, when compatibility is enabled this event is not dispatched.
+   */
+  _transitionEndHandler(e: TransitionEvent): void;
 }

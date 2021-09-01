@@ -1,4 +1,4 @@
-import { fixture, assert, html } from '@open-wc/testing';
+import { fixture, assert, html, oneEvent } from '@open-wc/testing';
 import sinon from 'sinon';
 import '../anypoint-icon-button.js';
 import '@polymer/iron-icon/iron-icon.js';
@@ -207,6 +207,18 @@ describe('<anypoint-icon-button>', () => {
         <iron-icon icon="alarm-add"></iron-icon>
       </anypoint-icon-button>`);
       await assert.isAccessible(element);
+    });
+  });
+
+  describe('Ripple effect', () => {
+    /** @type AnypointIconButton */
+    let element;
+
+    it('dispatched transitionend event on ripple end', async () => {
+      element = await basicFixture();
+      MockInteractions.pressSpace(element);
+      const e = /** @type TransitionEvent */ (/** @type unknown */ (await oneEvent(element, 'transitionend')));
+      assert.isUndefined(e.propertyName);
     });
   });
 });

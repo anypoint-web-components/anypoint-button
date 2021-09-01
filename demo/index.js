@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable default-case */
 import { html } from 'lit-html';
 import { ArcDemoPage } from '@advanced-rest-client/arc-demo-helper/ArcDemoPage.js';
 import '@advanced-rest-client/arc-demo-helper/arc-interactive-demo.js';
@@ -19,26 +21,42 @@ class ComponentDemo extends ArcDemoPage {
       'demoToggles',
       'demoLeadingIcon',
       'demoNoink',
-      'demoDisabed',
+      'demoDisabled',
       'iconButtonCompatibility',
       'iconButtonEmphasis',
       'iconNoink',
-      'iconDisabed',
+      'iconDisabled',
       'iconToggles'
     ]);
     this._demoEmphasisHandler = this._demoEmphasisHandler.bind(this);
     this._toggleMainOption = this._toggleMainOption.bind(this);
     this._contentControlClick = this._contentControlClick.bind(this);
     this._iconsEmphasisHandler = this._iconsEmphasisHandler.bind(this);
+    this.mainTransitionHandler = this.mainTransitionHandler.bind(this);
+    this.buttonTransitionHandler = this.buttonTransitionHandler.bind(this);
 
     this._componentName = 'anypoint-button';
     this.buttonStates = ['Text', 'Outlined', 'Contained'];
+    /** @type {"low" | "medium" | "high"} */
     this.demoButtonEmphasis = 'low';
+    /** @type {"low" | "medium" | "high"} */
     this.iconButtonEmphasis = 'low';
+
+    this.demoDisabled = false;
+    this.iconDisabled = false;
+    this.demoButtonCompatibility = false;
+    this.demoNoink = false;
+    this.demoToggles = false;
+    this.demoLeadingIcon = false;
+    this.darkThemeActive = false;
+    this.iconButtonCompatibility = false;
+    this.iconNoink = false;
+    this.iconToggles = false;
   }
 
   _demoEmphasisHandler(e) {
     const state = e.detail.value;
+    /** @type {"low" | "medium" | "high"} */
     let value;
     switch (state) {
       case 0: value = 'low'; break;
@@ -50,6 +68,7 @@ class ComponentDemo extends ArcDemoPage {
 
   _iconsEmphasisHandler(e) {
     const state = e.detail.value;
+    /** @type {"low" | "medium" | "high"} */
     let value;
     switch (state) {
       case 0: value = 'low'; break;
@@ -70,8 +89,29 @@ class ComponentDemo extends ArcDemoPage {
       if (node === e.currentTarget) {
         return;
       }
+      // @ts-ignore
       node.active = false;
     });
+  }
+
+  /**
+   * @param {TransitionEvent} e 
+   */
+  mainTransitionHandler(e) {
+    const { propertyName } = e;
+    if (propertyName === undefined) {
+      console.log('Ripple transition end on the main button demo');
+    }
+  }
+
+  /**
+   * @param {TransitionEvent} e 
+   */
+  buttonTransitionHandler(e) {
+    const { propertyName } = e;
+    if (propertyName === undefined) {
+      console.log('Ripple transition end on the icon button demo');
+    }
   }
 
   _demoTemplate() {
@@ -82,7 +122,7 @@ class ComponentDemo extends ArcDemoPage {
       demoNoink,
       demoToggles,
       demoLeadingIcon,
-      demoDisabed,
+      demoDisabled,
       darkThemeActive
     } = this;
     return html`
@@ -104,7 +144,8 @@ class ComponentDemo extends ArcDemoPage {
             ?compatibility="${demoButtonCompatibility}"
             ?noink="${demoNoink}"
             ?toggles="${demoToggles}"
-            ?disabled="${demoDisabed}"
+            ?disabled="${demoDisabled}"
+            @transitionend="${this.mainTransitionHandler}"
           >
             ${demoLeadingIcon ? html`<iron-icon icon="add-shopping-cart"></iron-icon>` : undefined}
             Label
@@ -128,11 +169,11 @@ class ComponentDemo extends ArcDemoPage {
             slot="options"
             name="demoNoink"
             @change="${this._toggleMainOption}"
-            >No riplles</anypoint-checkbox>
+            >No ripples</anypoint-checkbox>
           <anypoint-checkbox
             aria-describedby="mainOptionsLabel"
             slot="options"
-            name="demoDisabed"
+            name="demoDisabled"
             @change="${this._toggleMainOption}"
             >Disabled</anypoint-checkbox>
           <anypoint-checkbox
@@ -170,7 +211,7 @@ class ComponentDemo extends ArcDemoPage {
     return html`
       <section class="documentation-section">
         <h2>Usage</h2>
-        <p>Anypoint button comes with 4 predefied styles:</p>
+        <p>Anypoint button comes with 4 predefined styles:</p>
         <ul>
           <li><b>Text</b> (normal) - For low emphasis actions</li>
           <li><b>Outlined</b> - For medium emphasis actions</li>
@@ -185,7 +226,7 @@ class ComponentDemo extends ArcDemoPage {
           <a href="https://material.io/design/components/buttons.html"
             >Buttons</a
           >
-          documentation in Material Defign documentation for principles and
+          documentation in Material Design documentation for principles and
           anatomy of dropdown menus.
         </p>
 
@@ -249,7 +290,7 @@ class ComponentDemo extends ArcDemoPage {
       iconButtonCompatibility,
       iconNoink,
       iconToggles,
-      iconDisabed,
+      iconDisabled,
       darkThemeActive
     } = this;
     return html`
@@ -282,9 +323,10 @@ class ComponentDemo extends ArcDemoPage {
             ?compatibility="${iconButtonCompatibility}"
             ?noink="${iconNoink}"
             ?toggles="${iconToggles}"
-            ?disabled="${iconDisabed}"
+            ?disabled="${iconDisabled}"
             title="Star this project"
             aria-label="Activate to see the demo."
+            @transitionend="${this.buttonTransitionHandler}"
           >
             <iron-icon icon="star-border"></iron-icon>
           </anypoint-icon-button>
@@ -301,11 +343,11 @@ class ComponentDemo extends ArcDemoPage {
             slot="options"
             name="iconNoink"
             @change="${this._toggleMainOption}"
-            >No riplles</anypoint-checkbox>
+            >No ripples</anypoint-checkbox>
           <anypoint-checkbox
             aria-describedby="iconOptionsLabel"
             slot="options"
-            name="iconDisabed"
+            name="iconDisabled"
             @change="${this._toggleMainOption}"
             >Disabled</anypoint-checkbox>
           <anypoint-checkbox
@@ -537,4 +579,3 @@ class ComponentDemo extends ArcDemoPage {
 }
 const instance = new ComponentDemo();
 instance.render();
-window.demo = instance;
