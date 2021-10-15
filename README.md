@@ -1,4 +1,8 @@
-# anypoint-button
+# Deprecated
+
+This component has been moved to `anypoint-web-components/awc`.
+
+====
 
 Anypoint and Material Design styled button.
 
